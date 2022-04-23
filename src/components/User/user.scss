@@ -1,0 +1,120 @@
+.icon-state {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 2px solid var(--white-color);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    &__img {
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+    &__name {
+        font-size: 1.2rem;
+        display: flex;
+        font-weight: 500;
+        gap: .2rem;
+    }
+}
+
+.userPost {
+    gap: 1rem;
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+    }
+    &__time-box {
+        display: flex;
+        gap: 1rem;
+    }
+    &__time {
+        font-size: 1.1rem;
+    }
+    &__icon {
+        font-size: 1.3rem;
+    }
+    &__name {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+}
+
+.userFriend {
+    gap: .5rem;
+    padding: .5rem;
+    position: relative;
+    &__icon-box {
+        position: relative;
+    }
+    &__card {
+        position: absolute;
+        top: 60%;
+        left: 0;
+        transform: translate(-105%, -50%);
+        -moz-transform: translate(-105%, -50%);
+        -ms-transform: translate(-105%, -50%);
+        -o-transform: translate(-105%, -50%);
+        -webkit-transform: translate(-105%, -50%);
+    }
+    &:hover {
+        background-color: var(--grey-color);
+    }
+    border-radius :var(--border-radius-md);
+    -webkit-border-radius:var(--border-radius-md);
+    -moz-border-radius :var(--border-radius-md);
+    -ms-border-radius :var(--border-radius-md);
+    -o-border-radius :var(--border-radius-md);
+}
+
+.user-create-room {
+    gap: .5rem;
+    padding: .5rem;
+    position: relative;
+    &__icon-state {
+        background-color: var(--green-color);
+    }
+    &__icon-box {
+        position: relative;
+    }
+    &:hover {
+        background-color: var(--grey-color);
+    }
+    &__name {
+        position: absolute;
+        padding: 1rem;
+    }
+    border-radius :50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius :50%;
+    -ms-border-radius :50%;
+    -o-border-radius :50%;
+}
+
+.user-state {
+    gap: .5rem;
+    padding: .5rem;
+    &__icon-box {
+        position: relative;
+    }
+    border-radius :var(--border-radius-md);
+    -webkit-border-radius:var(--border-radius-md);
+    -moz-border-radius :var(--border-radius-md);
+    -ms-border-radius :var(--border-radius-md);
+    -o-border-radius :var(--border-radius-md);
+}

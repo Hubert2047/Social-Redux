@@ -1,0 +1,22 @@
+@mixin hoverBefore {
+    &:hover::before {
+        content: ""attr(name)"";
+        position: absolute;
+        color: var(--white-color);
+        bottom: -6px;
+        left: 50%;
+        background-color: var(--grey-color-1);
+        font-size: 1.3rem;
+        padding: .8rem 1.5rem;
+        border-radius: var(--border-radius-md);
+        transform: translate(-50%, 100%);
+        -webkit-transform: translate(-50%, 100%);
+        -moz-transform: translate(-50%, 100%);
+        -ms-transform: translate(-50%, 100%);
+        -o-transform: translate(-50%, 100%);
+        -webkit-border-radius: var(--border-radius-md);
+        -moz-border-radius: var(--border-radius-md);
+        -ms-border-radius: var(--border-radius-md);
+        -o-border-radius: var(--border-radius-md);
+    }
+}

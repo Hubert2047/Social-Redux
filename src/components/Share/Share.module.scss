@@ -1,0 +1,58 @@
+.share {
+    padding: 1rem;
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-large);
+    margin-top: 3rem;
+    box-shadow: var(--box-shadow);
+    .top {
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background-color: var(--grey-white-color);
+        border-radius: 10px;
+        padding: 1rem;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+    .optionBtns {
+        padding-top: 1rem;
+        list-style: none;
+    }
+    .optionBtn {
+        flex: 1;
+        font-size: 2.5rem;
+        padding: 1rem 0;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        cursor: pointer;
+        span {
+            font-size: 1.5rem;
+            color: var(--grey-color-4);
+        }
+        &:hover {
+            background-color: var(--grey-color-3);
+        }
+        border-radius: 5px;
+    }
+    .optionBtnStyle1 {
+        color: var(--red-color)
+    }
+    .optionBtnStyle2 {
+        color: var(--green-color)
+    }
+    .optionBtnStyle3 {
+        color: var(--lemon-color)
+    }
+    -webkit-border-radius: var(--border-radius-large);
+    -moz-border-radius: var(--border-radius-large);
+    -ms-border-radius: var(--border-radius-large);
+    -o-border-radius: var(--border-radius-large);
+}

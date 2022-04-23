@@ -1,0 +1,33 @@
+.rightbar {
+    .header {
+        justify-content: space-between;
+        align-items: center;
+    }
+    .title {
+        font-size: 2rem;
+        color: var(--grey-color-4)
+    }
+    .headerIcons {
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    .optionBtn {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        &:hover {
+            background-color: var(--grey-color);
+        }
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+    .optionIcon {
+        font-size: 4rem;
+        cursor: pointer;
+        padding: 1rem;
+        color: var(--grey-color-2);
+    }
+}

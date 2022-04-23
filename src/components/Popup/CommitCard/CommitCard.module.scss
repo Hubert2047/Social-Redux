@@ -1,0 +1,79 @@
+.commitCard {
+    background-color: var(--white-color);
+    .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20vw;
+        font-size: 2rem;
+        font-weight: 600;
+        padding: 1.5rem 1rem;
+        border-bottom: 1px solid var(--grey-color);
+    }
+    .icon {
+        font-size: 3rem;
+        opacity: .5;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.08) translateY(-1px);
+            -webkit-transform: scale(1.08) translateY(-1px);
+            -moz-transform: scale(1.08) translateY(-1px);
+            -ms-transform: scale(1.08) translateY(-1px);
+            -o-transform: scale(1.08) translateY(-1px);
+        }
+        &:active {
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+        }
+    }
+    .messenger {
+        font-size: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+    .actionBtns {
+        padding: 1.5rem 1rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+    .actionBtn {
+        font-size: 1.5rem;
+        padding: .8rem 1.5rem;
+        min-width: 8rem;
+        &:hover {
+            transform: translateY(-1px);
+            -webkit-transform: translateY(-1px);
+            -moz-transform: translateY(-1px);
+            -ms-transform: translateY(-1px);
+            -o-transform: translateY(-1px);
+        }
+        &:active {
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+        }
+        border-radius: var(--border-radius-md);
+        -webkit-border-radius: var(--border-radius-md);
+        -moz-border-radius: var(--border-radius-md);
+        -ms-border-radius: var(--border-radius-md);
+        -o-border-radius: var(--border-radius-md);
+    }
+    .white {
+        color: var(--blue-color);
+    }
+    .blue {
+        color: var(--white-color);
+        background-color: var(--blue-color);
+    }
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-md);
+    -webkit-border-radius: var(--border-radius-md);
+    -moz-border-radius: var(--border-radius-md);
+    -ms-border-radius: var(--border-radius-md);
+    -o-border-radius: var(--border-radius-md);
+}

@@ -1,0 +1,18 @@
+    .sidebarItem {
+        align-items: center;
+        padding: var(--main-padding);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        gap: 1.5rem;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 1.8rem;
+        &:hover {
+            background-color: var(--grey-color);
+        }
+        .text {
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+    }

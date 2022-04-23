@@ -1,0 +1,61 @@
+.comment {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: .2rem;
+    .userAvatar {
+        height: 3rem;
+        width: 3rem;
+    }
+    .body {
+        margin-left: .5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+        flex: 1;
+    }
+    .header {
+        display: flex;
+        align-items: end;
+        gap: 1rem;
+    }
+    .userName {
+        font-size: 1.3rem !important;
+        font-weight: 600 !important;
+    }
+    .time {
+        font-size: 1.2rem;
+    }
+    .content {
+        display: flex;
+        font-size: 1.4rem;
+    }
+    .actionBtns {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .actionIcon {
+        font-size: 1.5rem;
+        color: var(--grey-color-4)
+    }
+    .actionBtn {
+        font-size: 1.2rem;
+        padding: .5rem;
+        &:hover {
+            background-color: var(--grey-color-3);
+        }
+        border-radius: var(--border-radius-large);
+        -webkit-border-radius: var(--border-radius-large);
+        -moz-border-radius: var(--border-radius-large);
+        -ms-border-radius: var(--border-radius-large);
+        -o-border-radius: var(--border-radius-large);
+    }
+    .replies {
+        margin-left: 1rem;
+    }
+    border-radius: var(--border-radius-large);
+    -webkit-border-radius: var(--border-radius-large);
+    -moz-border-radius: var(--border-radius-large);
+    -ms-border-radius: var(--border-radius-large);
+    -o-border-radius: var(--border-radius-large);
+}

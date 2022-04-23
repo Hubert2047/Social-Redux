@@ -1,0 +1,22 @@
+    .searchPrimary {
+        align-items: center;
+        gap: .5rem;
+        background-color: var(--grey-white-color);
+        height: 65%;
+        padding: 1rem;
+        color: var(--black-color);
+        .icon {
+            font-size: 1.5rem;
+        }
+        .input {
+            width: 100%;
+            background: none;
+            border: none;
+            outline: none;
+        }
+        border-radius :var(--border-radius-large);
+        -webkit-border-radius:var(--border-radius-large);
+        -moz-border-radius :var(--border-radius-large);
+        -ms-border-radius :var(--border-radius-large);
+        -o-border-radius :var(--border-radius-large);
+    }

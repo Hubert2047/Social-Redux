@@ -1,0 +1,35 @@
+.product {
+    gap: .5rem;
+    cursor: pointer;
+    .img {
+        height: 25rem;
+        aspect-ratio: 1;
+        object-fit: contain;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius-md);
+        -webkit-border-radius: var(--border-radius-md);
+        -moz-border-radius: var(--border-radius-md);
+        -ms-border-radius: var(--border-radius-md);
+        -o-border-radius: var(--border-radius-md);
+    }
+    .price {
+        font-size: 2rem;
+        text-transform: uppercase;
+        opacity: .8;
+        font-weight: 600;
+    }
+    .name {
+        color: var(--grey-color-1);
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .address {
+        font-size: 1.4rem;
+        font-weight: 300;
+        opacity: .5;
+        text-transform: capitalize;
+    }
+}

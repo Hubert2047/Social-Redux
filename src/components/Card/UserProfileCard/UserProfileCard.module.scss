@@ -1,0 +1,44 @@
+.userProfileCard {
+    display: flex;
+    gap: 3rem;
+    padding: 1rem;
+    background-color: var(--white-color);
+    min-height: 18rem;
+    min-width: 40rem;
+    .userState {
+        width: 2rem !important;
+        height: 2rem !important;
+        bottom: 5px !important;
+        right: 5px !important;
+    }
+    .userAvatar {
+        height: 10rem !important;
+        width: 10rem !important;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .userName {
+        font-size: 2rem !important;
+        font-weight: 600 !important;
+    }
+    .userInfor {
+        display: flex;
+        align-items: start;
+        gap: .5rem;
+    }
+    .inforIcon {
+        font-size: 3rem;
+    }
+    .inforText {
+        font-size: 1.3rem;
+    }
+    border-radius: var(--border-radius-large);
+    -webkit-border-radius: var(--border-radius-large);
+    -moz-border-radius: var(--border-radius-large);
+    -ms-border-radius: var(--border-radius-large);
+    -o-border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow);
+}

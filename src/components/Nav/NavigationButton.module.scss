@@ -1,0 +1,26 @@
+@import '../../index.scss';
+.button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    flex: 1;
+    cursor: pointer;
+    @include hoverBefore;
+    &:hover {
+        background-color: var(--grey-color-2);
+    }
+    border-radius: var(--border-radius-md);
+    -webkit-border-radius: var(--border-radius-md);
+    -moz-border-radius: var(--border-radius-md);
+    -ms-border-radius: var(--border-radius-md);
+    -o-border-radius: var(--border-radius-md);
+    // border-borderRadiusLeftBottom:0
+}
+
+.active {
+    border-bottom: 2px solid #F2F3F5;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}

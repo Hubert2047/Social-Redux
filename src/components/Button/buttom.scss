@@ -1,0 +1,40 @@
+.btn {
+    padding: .3em .8em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.sidebarBtn {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 3px;
+    padding: var(--main-padding);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--grey-color);
+    }
+    &__icon-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        background-color: var(--grey-color);
+    }
+    &__icon {
+        font-size: 1.8rem;
+    }
+    &__text {
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+}

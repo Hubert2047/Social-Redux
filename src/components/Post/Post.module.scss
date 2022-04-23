@@ -1,0 +1,96 @@
+    .post {
+        margin: 2rem 0;
+        background-color: var(--white-color);
+        box-shadow: var(--box-shadow);
+        .header {
+            padding: 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .changeIcon {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .content {
+            font-size: 1.4rem;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+        .img {
+            width: 100%;
+            object-fit: cover;
+        }
+        .footer {
+            padding: 1rem;
+        }
+        .inforBox {
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+        .inforBoxRight {
+            justify-content: center;
+            align-items: center;
+        }
+        .inforBoxIcon {
+            font-size: 2rem;
+        }
+        .inforBoxIconStyle1 {
+            color: var(--lemon-color);
+        }
+        .inforBoxIconStyle2 {
+            color: var(--green-color);
+        }
+        .likeCount {
+            font-size: 1.3rem;
+            margin-left: .5rem;
+        }
+        .inforBoxLeft {
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            &>:hover {
+                border-bottom: 1px solid var(--grey-color-4);
+            }
+        }
+        .hr {
+            height: 1px;
+            width: 100%;
+            background-color: var(--grey-color);
+        }
+        .actionBtns {
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+        }
+        .activeLiked {
+            color: var(--lemon-color)
+        }
+        .btnBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            padding: 1rem 0;
+            cursor: pointer;
+            &:hover {
+                background-color: var(--grey-color-3);
+            }
+            span {
+                font-size: 1.2rem;
+            }
+            border-radius :var(--border-radius-md);
+            -webkit-border-radius:var(--border-radius-md);
+            -moz-border-radius :var(--border-radius-md);
+            -ms-border-radius :var(--border-radius-md);
+            -o-border-radius :var(--border-radius-md);
+        }
+        .btnIcon {
+            font-size: 2rem;
+        }
+        border-radius: var(--border-radius-large);
+        -webkit-border-radius: var(--border-radius-large);
+        -moz-border-radius: var(--border-radius-large);
+        -ms-border-radius: var(--border-radius-large);
+        -o-border-radius: var(--border-radius-large);
+    }

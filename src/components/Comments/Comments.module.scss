@@ -1,0 +1,14 @@
+.comments {
+    height: 0;
+    opacity: 0;
+    transition: all 0.01s;
+    -webkit-transition: all 0.01s;
+    -moz-transition: all 0.01s;
+    -ms-transition: all 0.01s;
+    -o-transition: all 0.01s;
+}
+
+.active {
+    opacity: 1;
+    height: 100%;
+}

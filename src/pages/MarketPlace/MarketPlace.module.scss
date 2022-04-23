@@ -1,0 +1,57 @@
+.marketplace {
+    .products {
+        flex: 1;
+        padding: 0 3rem;
+        background-color: var(--grey-color-3);
+    }
+}
+
+.sidebar {
+    position: sticky;
+    top: 4.5rem;
+    height: 100vh;
+    overflow: scroll;
+    align-self: flex-start;
+    justify-self: flex-start;
+    width: 20%;
+    padding: 1rem 0 0 .5rem;
+    background-color: var(--white-color);
+    box-shadow: var(--box-shadow);
+    .header {
+        gap: .5rem;
+        padding: 0 1rem 0 2rem;
+    }
+    .headerTop {
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: .5rem;
+    }
+    .title {
+        font-size: 2rem;
+    }
+    .headerIcon {
+        font-size: 2rem;
+    }
+    .navBtns {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--grey-color);
+    }
+    .filter {
+        padding: 2rem 0 1.5rem 2rem;
+        border-bottom: 1px solid var(--grey-color);
+    }
+    .filterHeading {
+        font-size: 2rem;
+        font-weight: 400;
+        margin-bottom: .5rem;
+    }
+    .currentFilterLocation {
+        font-size: 1.5rem;
+        color: var(--blue-color);
+    }
+    .categoryHeading {
+        padding: 1rem 0 0 2rem;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+}

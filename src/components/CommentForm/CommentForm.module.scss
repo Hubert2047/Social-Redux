@@ -1,0 +1,55 @@
+.commentForm {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem 0;
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: .5rem;
+        flex: 1;
+        background-color: var(--grey-color-3);
+        border-radius: var(--border-radius-large);
+        -webkit-border-radius: var(--border-radius-large);
+        -moz-border-radius: var(--border-radius-large);
+        -ms-border-radius: var(--border-radius-large);
+        -o-border-radius: var(--border-radius-large);
+    }
+    .inputBox {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        a {
+            font-size: 1.4rem;
+            color: var(--purple-color);
+        }
+    }
+    .input {
+        padding: .5rem;
+        outline: 0;
+        border: 0;
+        width: 100%;
+        background: none;
+        font-size: 1.4rem;
+        flex: 1;
+    }
+    .actionBtn {
+        font-size: 3rem;
+        display: flex;
+        align-items: center;
+    }
+    .actionIcon {
+        padding: .5rem;
+        cursor: pointer;
+        color: var(--grey-color-1);
+        &:hover {
+            background-color: var(--grey-color-2);
+        }
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+}
