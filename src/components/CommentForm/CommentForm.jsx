@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react'
-import UserAvatar from '../User/UserAvatar'
+import React, { useState } from 'react'
+import { AiOutlineFileGif } from 'react-icons/ai'
 import { BsEmojiSmile } from 'react-icons/bs'
 import { MdPhotoCamera } from 'react-icons/md'
-import { AiOutlineFileGif } from 'react-icons/ai'
 import { RiChatSmile3Fill } from 'react-icons/ri'
-import { user } from '../../data/api.js'
+import { useSelector } from 'react-redux'
+import UserAvatar from '../User/UserAvatar'
 import styles from './CommentForm.module.scss'
 
 export default function CommentForm({
@@ -15,6 +15,7 @@ export default function CommentForm({
     subMitType,
     className,
 }) {
+    const currentUser = useSelector((state) => state.user.currentUser)
     const [text, setText] = useState(() => {
         return initialValue ? initialValue : ''
     })
@@ -23,7 +24,7 @@ export default function CommentForm({
         if (subMitType === 'create') {
             handleSubmit({
                 id: Math.random().toString(36).substr(2, 9),
-                user: user,
+                user: currentUser,
                 content: text,
                 parentId: parentId ? parentId : null,
                 createdAt: new Date().toLocaleString(),
@@ -37,7 +38,7 @@ export default function CommentForm({
     return (
         <div className={className}>
             <form onSubmit={onSubmit} className={styles.commentForm}>
-                <UserAvatar userAvatar={userAvatar} />
+                <UserAvatar userAvatar={currentUser.avatar} />
                 <div className={styles.body}>
                     <div className={styles.inputBox}>
                         <input

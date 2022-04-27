@@ -1,29 +1,29 @@
-import { FaUserFriends, FaGamepad, FaTools, FaBell } from 'react-icons/fa'
+import { AiFillCar, AiFillHome, AiOutlineHome } from 'react-icons/ai'
 import {
     BsClockHistory,
     BsFillBookmarkStarFill,
     BsFillQuestionCircleFill,
+    BsInbox,
     BsPhone,
+    BsShop,
     BsSuitHeartFill,
     BsTagsFill,
-    BsShop,
-    BsInbox,
 } from 'react-icons/bs'
+import { CgProfile } from 'react-icons/cg'
+import { FaBell, FaGamepad, FaTools, FaUserFriends } from 'react-icons/fa'
 import { FcSportsMode } from 'react-icons/fc'
-import { GiPodiumWinner, GiFreedomDove, GiClothes } from 'react-icons/gi'
+import { GiClothes, GiFreedomDove, GiPodiumWinner } from 'react-icons/gi'
+import { HiUserGroup } from 'react-icons/hi'
+import { IoIosPeople } from 'react-icons/io'
 import {
-    MdOutlineEventAvailable,
-    MdOutlineRssFeed,
-    MdOndemandVideo,
-    MdOutlinePets,
     MdLocalGroceryStore,
+    MdOndemandVideo,
+    MdOutlineEventAvailable,
+    MdOutlinePets,
+    MdOutlineRssFeed,
     MdSell,
 } from 'react-icons/md'
-import { HiUserGroup } from 'react-icons/hi'
-import { AiOutlineHome, AiFillHome, AiFillCar } from 'react-icons/ai'
-import { CgProfile } from 'react-icons/cg'
-import { IoIosPeople } from 'react-icons/io'
-import { SiHomeassistantcommunitystore, SiFacebooklive } from 'react-icons/si'
+import { SiFacebooklive, SiHomeassistantcommunitystore } from 'react-icons/si'
 export const user = {
     userId: 1,
     avatar: 'assets/person/hubert.jpg',

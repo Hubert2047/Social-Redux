@@ -1,16 +1,26 @@
 import clsx from 'clsx'
 import { AiFillGithub, AiOutlineTwitter } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { signInWithGoogle, auth } from '../../firebase'
+import { userActions } from '../../components/Store/user-slice'
+import { signInWithGoogle } from '../../firebase'
 import styles from './Register.module.scss'
 export default function Register() {
+    const dispatch = useDispatch()
     const handleSubmit = () => {}
     const handleSignWithGoogle = () => {
         signInWithGoogle()
-            .then((res) => {})
+            .then((res) => {
+                const currentUser = {
+                    firstName: res.user.displayName,
+                    lastName: '',
+                    avatar: res.user.photoURL,
+                }
+                dispatch(userActions.setUser(currentUser))
+            })
             .catch((err) => {
-                console.log('Error')
+                console.log(err)
             })
     }
     return (

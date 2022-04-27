@@ -4,7 +4,7 @@
     top: 0;
     z-index: 999;
     display: grid;
-    grid-template-columns: 5% 20% 1fr 10% 10%;
+    grid-template-columns: max-content 20% 1fr 10% max-content;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
@@ -79,11 +79,12 @@
     color: var(--white-color);
     cursor: pointer;
     border-radius: 50%;
+    transition: all 0.1s ease;
     &:hover {
-        background-color: var(--grey-color-4);
-        transform: scale(1.01);
+        background-color: var(--grey-color-1);
+        // transform: scale(1.02);
     }
-    &:active {
-        transform: scale(0.98);
-    }
+    // &:active {
+    //     transform: scale(0.98);
+    // }
 }

@@ -4,8 +4,14 @@ import { BiMessageError } from 'react-icons/bi'
 import { IoIosMoon } from 'react-icons/io'
 import { IoLogOut } from 'react-icons/io5'
 import { MdLiveHelp, MdSettings } from 'react-icons/md'
+import { useDispatch } from 'react-redux'
+import { userActions } from '../../components/Store/user-slice'
 import styles from './UserSettingList.module.scss'
 export default function UserSettingList() {
+    const dispatch = useDispatch()
+    const handleLogOut = () => {
+        dispatch(userActions.setUser({}))
+    }
     return (
         <ul className={clsx(styles.settingList, 'd-flex-c')}>
             <li className={clsx(styles.settingItem, 'd-flex-r')}>
@@ -24,7 +30,9 @@ export default function UserSettingList() {
                 <MdLiveHelp className={styles.settingIcon} />
                 <span className={styles.settingName}>Help & Support</span>
             </li>
-            <li className={clsx(styles.settingItem, 'd-flex-r')}>
+            <li
+                onClick={handleLogOut}
+                className={clsx(styles.settingItem, 'd-flex-r')}>
                 <IoLogOut className={styles.settingIcon} />
                 <span className={styles.settingName}>Log Out</span>
             </li>

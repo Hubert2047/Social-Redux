@@ -16,6 +16,7 @@ import styles from './Header.module.scss'
 export default function Header() {
     const isOpenSetting = useSelector((state) => state.header.isOpenSetting)
     const dispatch = useDispatch()
+    const currentUser = useSelector((state) => state.user.currentUser)
     const handleOpenSetting = () => {
         dispatch(headerActions.setOpenSetting())
     }
@@ -56,9 +57,9 @@ export default function Header() {
             <div className={clsx(styles.userBox, 'd-flex-r')}>
                 {/* user Infor */}
                 <User
-                    userAvatar={user.avatar}
-                    firstName={user.firstName}
-                    lastName={user.lastName}
+                    userAvatar={currentUser.avatar}
+                    firstName={currentUser.firstName}
+                    lastName={currentUser.lastName}
                     className={styles.user}
                 />
                 {/* user seetting */}
