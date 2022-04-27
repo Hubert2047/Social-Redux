@@ -1,19 +1,19 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import App from './App'
+import GlobalStyles from './components/GlobalStyle/GlobalStyles'
+import store from './components/Store'
 import './index.scss'
-import GlobalStyles from "./components/GlobalStyle/GlobalStyles";
-import ContextProvider from './components/Context/ContextProvider';
-
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+const rootElement = document.getElementById('root')
+const root = createRoot(rootElement)
 
 root.render(
-  <React.StrictMode>
+    <React.StrictMode>
         <GlobalStyles>
-              <ContextProvider>
-                  <App />
-              </ContextProvider>
+            <Provider store={store}>
+                <App />
+            </Provider>
         </GlobalStyles>
-  </React.StrictMode>,
-);
+    </React.StrictMode>
+)

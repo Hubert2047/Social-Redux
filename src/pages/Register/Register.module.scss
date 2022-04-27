@@ -1,0 +1,23 @@
+.formGroup{
+        margin-bottom: .5rem;
+        display: flex;
+        flex-direction: column;
+}
+.register{
+        padding: 1rem;
+       width: 20%;
+
+}
+.formInput{
+        padding: .5rem;
+        margin-top: .5rem;
+        min-width: max-content;
+
+}
+.submit{
+        padding: .5rem 1rem;
+}
+.formLabel{
+        font-size: 1.2rem;
+        text-transform: capitalize;
+}

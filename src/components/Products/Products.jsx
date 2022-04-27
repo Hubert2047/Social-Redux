@@ -5,7 +5,7 @@ export default function Products() {
   return (
     <div>
         {categoryProducts?.map(categoryProduct =>{
-            return <ProductCategory categorykey={categoryProduct.id} 
+            return <ProductCategory key = {categoryProduct.id} categorykey={categoryProduct.id} 
                                     categoryProduct={categoryProduct} 
                                     />
         })}
