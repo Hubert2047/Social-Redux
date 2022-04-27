@@ -1,23 +1,70 @@
-.formGroup{
-        margin-bottom: .5rem;
-        display: flex;
-        flex-direction: column;
+.register {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--grey-white-color);
 }
-.register{
-        padding: 1rem;
-       width: 20%;
+.form {
+    background-color: var(--white-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+}
+.login {
+    gap: 1rem;
+    border-bottom: 1px solid var(--grey-color-4);
+}
 
+.input {
+    background: none;
+    min-width: 30vw;
+    border: 1px solid var(--grey-color-4);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    outline: none;
 }
-.formInput{
-        padding: .5rem;
-        margin-top: .5rem;
-        min-width: max-content;
+.submit {
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.forgotPassword {
+    padding: 0.5rem 0 1rem 0;
+    text-align: center;
+    color: var(--blue-color);
+}
+.signinBox {
+    border-bottom: 1px solid var(--grey-color-4);
+}
 
+.signinBtn {
+    padding: 1rem;
+    margin: 1.5rem 0;
+    align-self: center;
+    min-width: 25%;
 }
-.submit{
-        padding: .5rem 1rem;
+.singinTittle {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    color: var(--grey-color-2);
 }
-.formLabel{
+.loginOptions {
+    padding: 1.5rem 0 1rem 0;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.loginOption {
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--white-color);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-md);
+    background-color: var(--grey-color-1);
+    &span {
         font-size: 1.2rem;
-        text-transform: capitalize;
+    }
+}
+.optionIcon {
+    font-size: 1.5rem;
 }

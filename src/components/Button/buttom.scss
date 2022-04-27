@@ -1,8 +1,26 @@
 .btn {
-    padding: .3em .8em;
+    padding: 0.3em 0.8em;
     border: none;
     outline: none;
     cursor: pointer;
+    color: var(--white-color);
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+    &:hover {
+        transform: scale(1.01);
+    }
+    &:active {
+        transform: scale(1);
+    }
+}
+.btn-grey {
+    background-color: var(--grey-color-4);
+}
+.btn-blue {
+    background-color: var(--blue-color);
+}
+.btn-green {
+    background-color: var(--green-color);
 }
 
 .sidebarBtn {
