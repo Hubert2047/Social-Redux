@@ -24,7 +24,13 @@ export default function CommentForm({
         if (subMitType === 'create') {
             handleSubmit({
                 id: Math.random().toString(36).substr(2, 9),
-                user: currentUser,
+                user: {
+                    userId: currentUser.id,
+                    avatar: currentUser.avatar,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                },
+                isLiked: false,
                 content: text,
                 parentId: parentId ? parentId : null,
                 createdAt: new Date().toLocaleString(),

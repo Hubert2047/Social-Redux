@@ -11,10 +11,10 @@ import { feedActions } from '../Store/feed-slice'
 import UserPost from '../User/UserPost'
 import styles from './Post.module.scss'
 export default function Post({ post }) {
-    const activeCommentBoxId = useSelector(
-        (state) => state.feed.activeCommentBoxId
-    )
-    const isActiveCommentBox = activeCommentBoxId === post.id
+    // const activeCommentBoxId = useSelector(
+    //     (state) => state.feed.activeCommentBoxId
+    // )
+    // const isActiveCommentBox = activeCommentBoxId === post.id
     const dispath = useDispatch()
     const handleActiveComment = () => {
         dispath(feedActions.setActiveCommentBoxId(post.id))
@@ -22,16 +22,16 @@ export default function Post({ post }) {
     const handleLikeClick = () => {
         dispath(feedActions.setIsLiked(post.id))
     }
-    const commentCount = user.posts.find((x) => x.id === post.id).comments
-        ?.length
+    // const commentCount = user.posts.find((x) => x.id === post.id).comments
+    //     ?.length
     return (
         <div className={styles.post}>
             <div className={clsx(styles.header, 'd-flex-r')}>
                 <UserPost
                     createAt={new Date(post.createAt).toLocaleString()}
-                    userAvatar={post.userCreate.avatar}
-                    firstName={post.userCreate.firstName}
-                    lastName={post.userCreate.lastName}
+                    userAvatar={post.user.avatar}
+                    firstName={post.user.firstName}
+                    lastName={post.user.lastName}
                 />
                 <BiDotsHorizontalRounded className={styles.changeIcon} />
             </div>
@@ -61,14 +61,14 @@ export default function Post({ post }) {
 
                     <div className={clsx(styles.inforBoxLeft, 'd-flex-r')}>
                         <span>
-                            {commentCount > 1
+                            {/* {commentCount > 1
                                 ? `${commentCount} Comments`
-                                : `${commentCount} Comment`}
+                                : `${commentCount} Comment`} */}
                         </span>
                         <span>
-                            {post.shareCount > 1
+                            {/* {post.shareCount > 1
                                 ? `${post.shareCount} Shares`
-                                : `${post.shareCount} Share`}
+                                : `${post.shareCount} Share`} */}
                         </span>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ export default function Post({ post }) {
                     </div>
                 </div>
                 {/* comments */}
-                {isActiveCommentBox && <Comments comment={post.comments} />}
+                {/* {isActiveCommentBox && <Comments comment={post.comments} />} */}
             </div>
         </div>
     )

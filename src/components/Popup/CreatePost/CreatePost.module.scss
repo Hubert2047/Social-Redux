@@ -30,6 +30,10 @@
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
     }
+    .shareContent {
+        max-height: 24rem;
+        overflow-y: scroll;
+    }
     .icon {
         font-size: 3rem;
     }
@@ -47,24 +51,23 @@
         flex-direction: column;
         gap: 0.2rem;
     }
-    .main {
-    }
-    .content {
+    .shareText {
         width: 100%;
-        padding: 1rem 1rem 10rem 1rem;
+        height: max-content;
+        padding-bottom: 4rem;
         border: none;
         outline: none;
         resize: none;
         font-size: 1.5rem;
         &::placeholder {
-            font-size: 2.1rem;
+            color: var(--grey-color-1);
         }
     }
     .optionBtns {
         display: flex;
         justify-content: space-between;
         font-size: 2.5rem;
-        padding: 3rem 0;
+        padding: 1rem 0;
         cursor: pointer;
     }
     .optionBtnStyle1 {
@@ -92,6 +95,8 @@
     .addFeature {
         padding: 1rem;
         background: none;
+        border: 1px solid var(--grey-color-4);
+        cursor: pointer;
         &:hover {
             background-color: var(--grey-color-3);
         }
@@ -135,6 +140,7 @@
         font-size: 1.8rem;
         text-align: center;
         margin-top: 1.5rem;
+        color: var(--white-color);
         &:disabled {
             cursor: no-drop;
         }
@@ -150,4 +156,16 @@
     -ms-border-radius: var(--border-radius-large);
     -o-border-radius: var(--border-radius-large);
     box-shadow: var(--box-shadow);
+}
+.shareImgBox {
+}
+.shareImg {
+    width: 100%;
+    border-radius: var(--border-radius-md);
+}
+.importFileBtn {
+    cursor: pointer;
+}
+.inputFile {
+    display: none;
 }

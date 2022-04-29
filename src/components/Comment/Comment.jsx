@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { useState } from 'react'
 import { AiFillLike } from 'react-icons/ai'
-import { user } from '../../data/api.js'
+import { useSelector } from 'react-redux'
 import { calDate } from '../../functions/functions.js'
 import CommentForm from '../CommentForm/CommentForm'
 import Modal from '../Modal/Modal'
@@ -19,16 +19,16 @@ export default function Comment({
     handleUpdateComment,
     isActiveCommentBox,
 }) {
+    const currentUser = useSelector((state) => state.user.currentUser)
     const [isCommentLiked, setIsCommentLiked] = useState(comment.isLiked)
     const [commentLikedIconStyle, setCommentLikedIconStyle] = useState({})
-    const [isShowCommitDelete, setIsShowCommitDelete] = useState(false)
-
+    const [isShowAlert, setIsShowAlert] = useState(false)
     const canActionCommentTime = 0
     const timePassed =
         new Date() - new Date(comment.createdAt) > canActionCommentTime
-    const canReply = Boolean(user.userId)
-    const canEdit = comment.user.userId === user.userId && timePassed
-    const canDelete = comment.user.userId === user.userId && timePassed
+    const canReply = Boolean(currentUser.id)
+    const canEdit = comment.user.userId === currentUser.id && timePassed
+    const canDelete = comment.user.userId === currentUser.id && timePassed
     const isReply =
         activeComment &&
         activeComment.style === 'Reply' &&
@@ -39,8 +39,8 @@ export default function Comment({
         activeComment.commentId === comment.id
     const commentParentId = comment.parentId ? comment.parentId : comment.id
 
-    const hideModal = () => {
-        setIsShowCommitDelete(false)
+    const handleShowAlert = () => {
+        setIsShowAlert((prev) => !prev)
     }
     const handleDeleteComment = (commentId) => {
         DeleteComment(commentId)
@@ -118,31 +118,25 @@ export default function Comment({
                     {canDelete && (
                         <div
                             className={styles.actionBtn}
-                            onClick={() => {
-                                //open modal commit delete
-                                setIsShowCommitDelete((prev) => !prev)
-                            }}>
+                            onClick={handleShowAlert}>
                             Delete
                         </div>
                     )}
                 </div>
                 {/* Call modal when delete btn is called */}
-                {isShowCommitDelete && (
-                    <Modal
-                        hideModal={hideModal}
-                        popup={
-                            <CommitCard
-                                handleDeleteComment={() =>
-                                    handleDeleteComment(comment.id)
-                                }
-                                hideModal={hideModal}
-                                title={'Delete Comment?'}
-                                messenger={
-                                    'Are you sure you want to delete this comment?'
-                                }
-                            />
-                        }
-                    />
+                {isShowAlert && (
+                    <Modal>
+                        <CommitCard
+                            handleShowAlert={handleShowAlert}
+                            handleAlertActions={() =>
+                                handleDeleteComment(comment.id)
+                            }
+                            title={'Delete Comment?'}
+                            messenger={
+                                'Are you sure you want to delete this comment?'
+                            }
+                        />
+                    </Modal>
                 )}
                 {/* form */}
 
@@ -151,7 +145,7 @@ export default function Comment({
                         className={clsx(styles.reply, {
                             [styles.activeReplyCommentForm]: isReply,
                         })}
-                        userAvatar={user.avatar}
+                        userAvatar={currentUser.avatar}
                         handleSubmit={addComment}
                         parentId={commentParentId}
                         initialValue={`@${comment.user.lastName} ${comment.user.firstName}  `}
@@ -164,7 +158,7 @@ export default function Comment({
                         className={clsx(styles.edit, {
                             [styles.activeEditcommentForm]: isEdit,
                         })}
-                        userAvatar={user.avatar}
+                        userAvatar={currentUser.avatar}
                         handleSubmit={(content) => {
                             handleUpdateComment(content, comment.id)
                         }}

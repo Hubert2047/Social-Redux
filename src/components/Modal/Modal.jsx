@@ -1,13 +1,9 @@
-import {React,useRef }from 'react'
-import styles from  './Modal.module.scss'
-export default function Modal({popup,hideModal}) {
-const modal =useRef()
-const handleOnClick=(e) => {     
-        hideModal()
-  }
-  return (
-    <div ref={modal} className={styles.modal} onClick={handleOnClick}>
-        {popup}
-    </div>
-  )
+import { React } from 'react'
+import styles from './Modal.module.scss'
+export default function Modal({ children, handleShowModal }) {
+    return (
+        <div className={styles.modal} onClick={handleShowModal}>
+            {children}
+        </div>
+    )
 }

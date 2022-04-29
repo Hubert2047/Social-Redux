@@ -3,9 +3,18 @@ const postSlice = createSlice({
     name: 'post',
     initialState: {
         posts: [],
+        post: {
+            id: '',
+            user: {},
+            createdAt: new Date().toLocaleString(),
+            content: '',
+            img: '',
+            isLiked: false,
+        },
         isActiveCommentBox: false,
         isLiked: false,
         likeCount: 0,
+        isShowLoading: false,
     },
     reducers: {
         getPosts(state, action) {
@@ -21,6 +30,18 @@ const postSlice = createSlice({
                 state.likeCount++
             }
             state.isLiked = !state.isLiked
+        },
+        addPost(state) {
+            state.posts = [...state.posts, { ...state.post }]
+        },
+        createPost(state, action) {
+            state.post = {
+                ...state.post,
+                [action.payload.type]: action.payload.value,
+            }
+        },
+        setIsShowLoading(state, action) {
+            state.isShowLoading = action.payload
         },
     },
 })

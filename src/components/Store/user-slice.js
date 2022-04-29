@@ -13,5 +13,5 @@ const userSlice = createSlice({
     },
 })
 const userActions = userSlice.actions
-export { userActions }
+export {  userActions }
 export default userSlice

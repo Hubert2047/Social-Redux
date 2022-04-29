@@ -7,6 +7,7 @@ export default function UserAvatar({ userAvatar, className }) {
                 className={'user__img ' + className}
                 src={userAvatar}
                 alt='avatar'
+                referrerPolicy='no-referrer'
             />
         </div>
     )

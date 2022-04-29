@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getStorage } from 'firebase/storage'
 const firebaseConfig = {
     apiKey: 'AIzaSyDj8vHRmIyCd-O1vAjIVi5D-V5Md6SOvfI',
     authDomain: 'social-redux-toolkit.firebaseapp.com',
@@ -17,3 +18,4 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 export const signInWithGoogle = () => signInWithPopup(auth, googleProvider)
+export const storage = getStorage(app)

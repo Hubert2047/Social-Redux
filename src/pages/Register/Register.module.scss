@@ -4,8 +4,19 @@
     align-items: center;
     background-color: var(--grey-white-color);
 }
+.loginIcon {
+    font-size: 5rem;
+    margin: 1.5rem 0;
+    color: var(--primary-color);
+}
+.formBox {
+    background-color: rgba(186, 181, 181, 0.1);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow);
+}
 .form {
-    background-color: var(--white-color);
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 1.5rem;
     border-radius: var(--border-radius-md);
     box-shadow: var(--box-shadow);

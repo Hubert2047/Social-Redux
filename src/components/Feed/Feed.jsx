@@ -9,14 +9,14 @@ import { feedActions } from '../Store/feed-slice'
 import Stories from '../Stories/Stories'
 import styles from './Feed.module.scss'
 export default function Feed({ className }) {
-    const postsAPI = user.posts.sort(
-        (a, b) => new Date(a.createAt) - new Date(b.createAt)
-    )
-    const posts = useSelector((state) => state.feed.posts)
-    const dispath = useDispatch()
-    useEffect(() => {
-        dispath(feedActions.setPosts(postsAPI))
-    }, [])
+    // const postsAPI = user.posts.sort(
+    //     (a, b) => new Date(a.createAt) - new Date(b.createAt)
+    // )
+    const posts = useSelector((state) => state.post.posts)
+    // const dispath = useDispatch()
+    // useEffect(() => {
+    //     dispath(feedActions.setPosts(postsAPI))
+    // }, [])
 
     return (
         <div className={clsx(styles.feed, className)}>

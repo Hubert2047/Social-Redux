@@ -1,17 +1,21 @@
 import clsx from 'clsx'
-import { React, useState } from 'react'
+import { React } from 'react'
 import { BsFillEmojiSmileFill, BsFillImageFill } from 'react-icons/bs'
 import { TiVideo } from 'react-icons/ti'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Modal from '../Modal/Modal'
 import CreatePost from '../Popup/CreatePost/CreatePost'
+import { shareActions } from '../Store/share-slice'
 import UserAvatar from '../User/UserAvatar'
 import styles from './Share.module.scss'
 export default function Share() {
     const currentUser = useSelector((state) => state.user.currentUser)
-    const [isShow, setIsShow] = useState(false)
-    const handleOnclick = () => {
-        setIsShow((pre) => !pre)
+    const isShowCreatePost = useSelector(
+        (state) => state.share.isShowCreatePost
+    )
+    const dispatch = useDispatch()
+    const handleShowCreatePost = () => {
+        dispatch(shareActions.setIsShowCreatePost())
     }
     return (
         <div className={styles.share}>
@@ -21,7 +25,7 @@ export default function Share() {
                     type='text'
                     className={styles.input}
                     placeholder={`What's on your mind ${currentUser.firstName} ?`}
-                    onClick={handleOnclick}
+                    onClick={handleShowCreatePost}
                 />
             </div>
             <div className={clsx('hr')} />
@@ -41,11 +45,10 @@ export default function Share() {
                     <span>Feeling/activity</span>
                 </li>
             </ul>
-            {isShow && (
-                <Modal
-                    hideModal={handleOnclick}
-                    popup={<CreatePost hideCreatePost={handleOnclick} />}
-                />
+            {isShowCreatePost && (
+                <Modal handleShowModal={handleShowCreatePost}>
+                    <CreatePost handleShowModal={handleShowCreatePost} />
+                </Modal>
             )}
         </div>
     )
