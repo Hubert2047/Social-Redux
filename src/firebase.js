@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 const firebaseConfig = {
     apiKey: 'AIzaSyDj8vHRmIyCd-O1vAjIVi5D-V5Md6SOvfI',
@@ -16,6 +17,8 @@ const firebaseConfig = {
 /// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
+const db = getFirestore(app) // lay ra db
 const googleProvider = new GoogleAuthProvider()
-export const signInWithGoogle = () => signInWithPopup(auth, googleProvider)
-export const storage = getStorage(app)
+const signInWithGoogle = () => signInWithPopup(auth, googleProvider)
+const storage = getStorage(app) //luu file img vao store
+export { db, signInWithGoogle, storage }

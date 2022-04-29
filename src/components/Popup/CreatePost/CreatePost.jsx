@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { addDoc, collection } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { React, useEffect, useState } from 'react'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
@@ -10,32 +11,28 @@ import { GoSmiley } from 'react-icons/go'
 import { ImLocation } from 'react-icons/im'
 import { MdColorLens } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import { storage } from '../../../firebase'
+import { db, storage } from '../../../firebase'
 import Loading from '../../Loading/Loading'
 import Modal from '../../Modal/Modal'
 import ShareType from '../../ShareType/ShareType'
 import { postActions } from '../../Store/post-slice'
+import { shareActions } from '../../Store/share-slice'
 import UserAvatar from '../../User/UserAvatar'
 import UserName from '../../User/UserName'
 import styles from './CreatePost.module.scss'
 
 export default function CreatePost({ handleShowModal }) {
     const currentUser = useSelector((state) => state.user.currentUser)
-    const content = useSelector((state) => state.post.post.content)
+    let post = useSelector((state) => state.post.post)
+    const content = useSelector((state) => state.post.post.content) // lấy ra để kiem tra xem nội dung đã tồn tại cưa
     const isShowLoading = useSelector((state) => state.post.isShowLoading)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(postActions.createPost({ type: 'user', value: currentUser }))
-        dispatch(
-            postActions.createPost({
-                type: 'id',
-                value: Math.random().toString(36).substr(2, 9),
-            })
-        )
+        dispatch(postActions.onChange({ type: 'user', value: currentUser }))
     }, [])
     const handleOnChange = (e) => {
         dispatch(
-            postActions.createPost({ type: 'content', value: e.target.value })
+            postActions.onChange({ type: 'content', value: e.target.value })
         )
     }
     const [imgData, setImgData] = useState({})
@@ -63,17 +60,33 @@ export default function CreatePost({ handleShowModal }) {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     dispatch(
-                        postActions.createPost({
+                        postActions.onChange({
                             type: 'img',
                             value: downloadURL,
                         })
                     )
-                    dispatch(postActions.addPost())
-                    dispatch(postActions.setIsShowLoading(false))
-                    handleShowModal()
+                    post = {
+                        ...post,
+                        img: downloadURL,
+                        createdAt: new Date().toLocaleString(),
+                    }
+                    handlePutPostApi()
+                    dispatch(postActions.setIsShowLoading())
+                    dispatch(shareActions.setIsShowCreatePost())
                 })
             }
         )
+    }
+    const handlePutPostApi = () => {
+        const collectionRef = collection(db, `users/${currentUser.id}/post`)
+        const { id, ...postApi } = post
+        addDoc(collectionRef, postApi)
+            .then((res) => {
+                dispatch(postActions.addPost({ ...post, id: res.id }))
+            })
+            .catch((err) => {
+                alert(err)
+            })
     }
     return (
         <div

@@ -1,25 +1,53 @@
 import clsx from 'clsx'
+import { collection, getDocs, query, where, addDoc } from 'firebase/firestore'
 import { AiFillGithub, AiOutlineTwitter } from 'react-icons/ai'
 import { FaBookReader } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { userActions } from '../../components/Store/user-slice'
-import { signInWithGoogle } from '../../firebase'
+import { db, signInWithGoogle } from '../../firebase'
 import styles from './Register.module.scss'
 export default function Register() {
+    const collectionRef = collection(db, 'users')
     const dispatch = useDispatch()
     const handleSubmit = () => {}
     const handleSignWithGoogle = () => {
         signInWithGoogle()
             .then((res) => {
                 const currentUser = {
-                    id: res.user.uid,
+                    uid: res.user.uid,
                     firstName: res.user.displayName,
                     lastName: '',
                     avatar: res.user.photoURL,
                 }
-                dispatch(userActions.setUser(currentUser))
+                const isExsistUser = query(
+                    collectionRef,
+                    where('uid', '==', res.user.uid)
+                )
+                getDocs(isExsistUser)
+                    .then((data) => {
+                        if (data.docs.length === 0) {
+                            addDoc(collectionRef, currentUser)
+                                .then((res) => {
+                                    dispatch(
+                                        userActions.setUser({
+                                            ...currentUser,
+                                            id: res.id,
+                                        })
+                                    )
+                                })
+                                .catch((err) => console.error(err))
+                        } else {
+                            dispatch(
+                                userActions.setUser({
+                                    ...currentUser,
+                                    id: data.docs[0].id,
+                                })
+                            )
+                        }
+                    })
+                    .catch((err) => console.error(err))
             })
             .catch((err) => {
                 console.log(err)

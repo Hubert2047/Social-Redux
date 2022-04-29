@@ -13,7 +13,6 @@ import Register from './pages/Register/Register'
 
 function App() {
     const isLogin = useSelector((state) => state.user.isLogin)
-
     return (
         <Router>
             <Routes>

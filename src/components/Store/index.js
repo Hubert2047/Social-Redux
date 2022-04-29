@@ -14,6 +14,7 @@ import headerSlice from './header-slice'
 import postSlile from './post-slice'
 import userSlice from './user-slice'
 import shareSlice from './share-slice'
+import commentSlice from './comment-slice'
 
 const persistConfig = {
     key: 'root',
@@ -28,6 +29,7 @@ const store = configureStore({
         post: postSlile.reducer,
         feed: feedSlice.reducer,
         header: headerSlice.reducer,
+        comment: commentSlice.reducer,
         user: persistedReducer,
     },
     middleware: (getDefaultMiddleware) =>

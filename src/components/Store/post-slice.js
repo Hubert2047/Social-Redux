@@ -6,6 +6,7 @@ const postSlice = createSlice({
         post: {
             id: '',
             user: {},
+            sharetype: 'public',
             createdAt: new Date().toLocaleString(),
             content: '',
             img: '',
@@ -17,7 +18,7 @@ const postSlice = createSlice({
         isShowLoading: false,
     },
     reducers: {
-        getPosts(state, action) {
+        setPosts(state, action) {
             state.posts = [...action.payload]
         },
         activeCommentBox(state, action) {
@@ -31,10 +32,10 @@ const postSlice = createSlice({
             }
             state.isLiked = !state.isLiked
         },
-        addPost(state) {
-            state.posts = [...state.posts, { ...state.post }]
+        addPost(state, action) {
+            state.posts = [...state.posts, { ...action.payload }]
         },
-        createPost(state, action) {
+        onChange(state, action) {
             state.post = {
                 ...state.post,
                 [action.payload.type]: action.payload.value,

@@ -28,9 +28,9 @@ export default function Header() {
     return (
         <div className={styles.header}>
             {/* logo */}
-            <div className={styles.logo}>Hlook</div>
+            <div className={styles.logo}>Avatar</div>
             {/* heaader search */}
-            <SearchPrimary placeholder={'Search Hlook'} />
+            <SearchPrimary placeholder={'Search '} />
             {/* header nav */}
             <ul className={styles.nav}>
                 {navBtns.map((navBtn) => {

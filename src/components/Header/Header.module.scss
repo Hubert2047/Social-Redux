@@ -13,10 +13,24 @@
     background-color: var(--primary-color);
     box-shadow: var(--box-shadow);
     .logo {
-        font-size: 2rem;
+        font-size: 3rem;
         color: var(--grey-white-color);
         font-weight: 700;
         letter-spacing: 1px;
+        background: linear-gradient(
+            90deg,
+            #c3e5ae,
+            #ffff00,
+            #97dbae,
+            #dae5d0,
+            #f1e1a6,
+            #f4bbbb
+        );
+        background-size: 400%;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: logoAnimated 15s linear infinite;
+        font-family: 'Tapestry', cursive;
     }
     .nav {
         display: flex;
@@ -82,9 +96,14 @@
     transition: all 0.1s ease;
     &:hover {
         background-color: var(--grey-color-1);
-        // transform: scale(1.02);
     }
-    // &:active {
-    //     transform: scale(0.98);
-    // }
+}
+
+@keyframes logoAnimated {
+    0% {
+        background-position: 400%;
+    }
+    100% {
+        background-position: 0%;
+    }
 }

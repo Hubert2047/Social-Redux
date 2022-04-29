@@ -5,16 +5,15 @@ import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsEmojiSmileFill } from 'react-icons/bs'
 import { FaRegCommentAlt, FaRegShareSquare } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { user } from '../../data/api.js'
 import Comments from '../Comments/Comments'
 import { feedActions } from '../Store/feed-slice'
 import UserPost from '../User/UserPost'
 import styles from './Post.module.scss'
 export default function Post({ post }) {
-    // const activeCommentBoxId = useSelector(
-    //     (state) => state.feed.activeCommentBoxId
-    // )
-    // const isActiveCommentBox = activeCommentBoxId === post.id
+    const activeCommentBoxId = useSelector(
+        (state) => state.feed.activeCommentBoxId
+    )
+    const isActiveCommentBox = activeCommentBoxId === post.id
     const dispath = useDispatch()
     const handleActiveComment = () => {
         dispath(feedActions.setActiveCommentBoxId(post.id))
@@ -28,7 +27,7 @@ export default function Post({ post }) {
         <div className={styles.post}>
             <div className={clsx(styles.header, 'd-flex-r')}>
                 <UserPost
-                    createAt={new Date(post.createAt).toLocaleString()}
+                    createAt={new Date(post.createdAt).toLocaleString()}
                     userAvatar={post.user.avatar}
                     firstName={post.user.firstName}
                     lastName={post.user.lastName}
@@ -98,7 +97,7 @@ export default function Post({ post }) {
                     </div>
                 </div>
                 {/* comments */}
-                {/* {isActiveCommentBox && <Comments comment={post.comments} />} */}
+                {isActiveCommentBox && <Comments comment={post.comments} />}
             </div>
         </div>
     )
