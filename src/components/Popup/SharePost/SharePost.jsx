@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { React, useEffect, useState } from 'react'
+import { React, useLayoutEffect, useRef, useState } from 'react'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsEmojiSmile, BsFillFileEarmarkImageFill } from 'react-icons/bs'
@@ -16,77 +16,103 @@ import Loading from '../../Loading/Loading'
 import Modal from '../../Modal/Modal'
 import ShareType from '../../ShareType/ShareType'
 import { postActions } from '../../Store/post-slice'
-import { shareActions } from '../../Store/share-slice'
 import UserAvatar from '../../User/UserAvatar'
 import UserName from '../../User/UserName'
-import styles from './CreatePost.module.scss'
+import styles from './SharePost.module.scss'
 
-export default function CreatePost({ handleShowModal }) {
+export default function SharePost({ title, handleHideModal }) {
     const currentUser = useSelector((state) => state.user.currentUser)
     let post = useSelector((state) => state.post.post)
-    const content = useSelector((state) => state.post.post.content) // lấy ra để kiem tra xem nội dung đã tồn tại cưa
-    const isShowLoading = useSelector((state) => state.post.isShowLoading)
+    const [isShowLoading, setIsShowLoading] = useState(false)
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(postActions.onChange({ type: 'user', value: currentUser }))
+    const [imgData, setImgData] = useState({})
+    const isDisableSubmit = post.content.length === 0 && post.img === ''
+    const inputRef = useRef()
+    useLayoutEffect(() => {
+        inputRef.current.focus()
     }, [])
     const handleOnChange = (e) => {
         dispatch(
             postActions.onChange({ type: 'content', value: e.target.value })
         )
     }
-    const [imgData, setImgData] = useState({})
-    const [previewImg, setPreviewImg] = useState('')
-    const isDisableSubmit = content.length === 0 && previewImg === ''
-    const handleShowLoading = () => {}
     const handlePreviewInputImg = (e) => {
         setImgData(e.target.files[0])
         const reader = new FileReader()
         reader.readAsDataURL(e.target.files[0])
         reader.onload = () => {
-            setPreviewImg(reader.result)
+            dispatch(
+                postActions.onChange({ type: 'img', value: reader.result })
+            )
         }
     }
-    const handleSubmit = () => {
-        dispatch(postActions.setIsShowLoading(true))
-        const storageRef = ref(storage, `images/ ${imgData.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, imgData)
-        uploadTask.on(
-            'state_changed',
-            (snapshot) => {},
-            (error) => {
-                console.log(error)
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    dispatch(
-                        postActions.onChange({
-                            type: 'img',
-                            value: downloadURL,
-                        })
+    const UpdateImgToFirebase = () => {
+        return new Promise((resolve, reject) => {
+            const storageRef = ref(storage, `images/ ${imgData.name}`)
+            const uploadTask = uploadBytesResumable(storageRef, imgData)
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {},
+                (error) => {
+                    reject(error.message)
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(
+                        (downloadURL) => {
+                            resolve(downloadURL)
+                        }
                     )
-                    post = {
-                        ...post,
-                        img: downloadURL,
-                        createdAt: new Date().toLocaleString(),
-                    }
-                    handlePutPostApi()
-                    dispatch(postActions.setIsShowLoading())
-                    dispatch(shareActions.setIsShowCreatePost())
-                })
-            }
-        )
+                }
+            )
+        })
     }
-    const handlePutPostApi = () => {
-        const collectionRef = collection(db, `users/${currentUser.id}/post`)
-        const { id, ...postApi } = post
-        addDoc(collectionRef, postApi)
-            .then((res) => {
-                dispatch(postActions.addPost({ ...post, id: res.id }))
-            })
-            .catch((err) => {
-                alert(err)
-            })
+
+    const handleCreatePost = async (postApi, createCollectionRef) => {
+        try {
+            await addDoc(createCollectionRef, postApi)
+        } catch (error) {
+            alert(error.message)
+        } finally {
+            dispatch(postActions.setIsShowCreatePost(null))
+        }
+    }
+    const handleEditPost = async (postApi, editDocRef) => {
+        try {
+            await updateDoc(editDocRef, postApi)
+        } catch (error) {
+            alert(error.message)
+        } finally {
+            dispatch(postActions.setShowEditPostId(null))
+        }
+    }
+    const handleSubmit = async () => {
+        setIsShowLoading(true)
+        post = {
+            ...post,
+            uid: currentUser.uid,
+        }
+        if (post.img !== '') {
+            try {
+                const downloadURL = await UpdateImgToFirebase()
+                post = {
+                    ...post,
+                    img: downloadURL,
+                }
+            } catch (error) {
+                alert(error)
+            }
+        }
+        if (title === 'Create Post') {
+            post = {
+                ...post,
+                createdAt: new Date().toLocaleString(),
+            }
+            const createCollectionRef = collection(db, 'post')
+            handleCreatePost(post, createCollectionRef)
+        } else if (title === 'Edit Post') {
+            const editDocRef = doc(db, 'post', post.id)
+            handleEditPost(post, editDocRef)
+        }
     }
     return (
         <div
@@ -95,8 +121,8 @@ export default function CreatePost({ handleShowModal }) {
                 e.stopPropagation()
             }}>
             <div className={clsx(styles.header, 'd-flex-r')}>
-                <div className={styles.title}>Create post</div>
-                <div className={styles.closeBtn} onClick={handleShowModal}>
+                <div className={styles.title}>{title} </div>
+                <div className={styles.closeBtn} onClick={handleHideModal}>
                     <AiOutlineCloseCircle className={styles.icon} />
                 </div>
             </div>
@@ -114,15 +140,18 @@ export default function CreatePost({ handleShowModal }) {
                 <div className={styles.main}>
                     <div className={styles.shareContent}>
                         <textarea
+                            ref={inputRef}
                             onChange={handleOnChange}
+                            onFocus={() => {
+                                inputRef.current.value = post.content
+                            }}
                             className={styles.shareText}
-                            value={content}
                             placeholder={`What's on your mind, ${currentUser.firstName}?`}
                         />
-                        {previewImg && (
+                        {post.img && (
                             <div className={styles.shareImgBox}>
                                 <img
-                                    src={previewImg}
+                                    src={post.img}
                                     alt='share'
                                     className={styles.shareImg}
                                 />
@@ -192,7 +221,7 @@ export default function CreatePost({ handleShowModal }) {
                 </div>
             </div>
             {isShowLoading && (
-                <Modal handleShowModal={handleShowLoading}>
+                <Modal>
                     <Loading />
                 </Modal>
             )}

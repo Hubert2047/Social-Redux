@@ -5,6 +5,7 @@
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.1",
         "clsx": "^1.1.1",
+        "emoji-picker-react": "^3.5.1",
         "firebase": "^9.6.10",
         "framer-motion": "^6.3.0",
         "node-sass": "^7.0.1",
@@ -19,7 +20,7 @@
         "redux": "^4.2.0",
         "redux-persist": "^6.0.0",
         "sass": "^1.49.11",
-        "uid": "^2.0.0",
+        "uuid": "^8.3.2",
         "web-vitals": "^2.1.4"
     },
     "scripts": {

@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { collection, getDocs, query, where, addDoc } from 'firebase/firestore'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import { AiFillGithub, AiOutlineTwitter } from 'react-icons/ai'
 import { FaBookReader } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
@@ -25,29 +25,34 @@ export default function Register() {
                     collectionRef,
                     where('uid', '==', res.user.uid)
                 )
+                // kiểm tra xem user có tồn tại không, nếu chưa tồn tại thì tạo
                 getDocs(isExsistUser)
                     .then((data) => {
                         if (data.docs.length === 0) {
                             addDoc(collectionRef, currentUser)
                                 .then((res) => {
                                     dispatch(
-                                        userActions.setUser({
-                                            ...currentUser,
-                                            id: res.id,
-                                        })
+                                        userActions.setCurrentUser(currentUser)
                                     )
+                                    dispatch(userActions.addUser(currentUser))
                                 })
-                                .catch((err) => console.error(err))
+                                .catch((err) => alert(err))
                         } else {
-                            dispatch(
-                                userActions.setUser({
-                                    ...currentUser,
-                                    id: data.docs[0].id,
-                                })
-                            )
+                            dispatch(userActions.setCurrentUser(currentUser))
                         }
                     })
-                    .catch((err) => console.error(err))
+                    .catch((err) => alert(err))
+                // lấy user về
+                const userCollection = collection(db, 'users')
+                getDocs(userCollection)
+                    .then((data) => {
+                        dispatch(
+                            userActions.setUsers(
+                                data.docs.map((doc) => doc.data())
+                            )
+                        )
+                    })
+                    .catch((err) => alert(err))
             })
             .catch((err) => {
                 console.log(err)

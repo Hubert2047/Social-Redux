@@ -18,7 +18,7 @@ export default function Header() {
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.user.currentUser)
     const handleOpenSetting = () => {
-        dispatch(headerActions.setOpenSetting())
+        dispatch(headerActions.setOpenSetting(true))
     }
     const mesengerCount = user.mesengers.filter(
         (mesenger) => mesenger.isRead === false

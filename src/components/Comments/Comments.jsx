@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
 import clsx from 'clsx'
-import CommentForm from '../CommentForm/CommentForm'
-import { user } from '../../data/api.js'
+import React, { useState } from 'react'
 import Comment from '../Comment/Comment'
+import CommentForm from '../CommentForm/CommentForm'
 import styles from './Comments.module.scss'
 
-export default function Comments({ comment }) {
-    const [comments, setComments] = useState(comment)
+export default function Comments({ post }) {
     const [activeComment, setActiveComment] = useState({})
-    let rootComments = comments
-        .filter((comment) => comment.parentId === null)
+    let rootComments = post.comments
+        ?.filter((comment) => comment.parentId === null)
         .sort((a, b) => {
             return (
                 new Date(b.createdAt).getTime() -
@@ -17,7 +15,7 @@ export default function Comments({ comment }) {
             )
         })
     const getReplies = (commentId) => {
-        return comments
+        return post.comments
             .filter((comment) => comment.parentId === commentId)
             .sort(
                 (a, b) =>
@@ -25,51 +23,29 @@ export default function Comments({ comment }) {
                     new Date(b.createdAt).getTime()
             )
     }
-    const handleAddComment = (comment) => {
-        setComments([...comments, comment])
-        // close comment form
-        setActiveComment({})
-    }
-
-    const handleUpdateComment = (content, commentId) => {
-        let updateComments = comments.map((comment) => {
-            if (comment.id === commentId) {
-                return { ...comment, content: content }
-            }
-            return comment
-        })
-        setComments(updateComments)
-        setActiveComment({})
-    }
-
-    const DeleteComment = (commentId) => {
-        let updateComments = comments.filter(
-            (comment) => comment.id !== commentId
-        )
-        setComments(updateComments)
-    }
 
     return (
-        <div className={clsx(styles.comments)}>
+        <div
+            className={clsx(styles.comments)}
+            onClick={(e) => {
+                e.stopPropagation()
+            }}>
             <CommentForm
-                userAvatar={user.avatar}
-                handleSubmit={handleAddComment}
-                initialValue={''}
                 subMitType='create'
+                post={post}
+                setActiveComment={setActiveComment}
             />
             <div>
-                {rootComments.map((rootComment) => {
+                {rootComments?.map((rootComment) => {
                     return (
                         <Comment
                             key={rootComment.id}
                             comment={rootComment}
                             replies={getReplies(rootComment.id)}
-                            DeleteComment={DeleteComment}
                             activeComment={activeComment}
                             setActiveComment={setActiveComment}
-                            addComment={handleAddComment}
-                            handleUpdateComment={handleUpdateComment}
                             commentParentId={null}
+                            post={post}
                         />
                     )
                 })}

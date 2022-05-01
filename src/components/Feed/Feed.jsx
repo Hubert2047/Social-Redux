@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, onSnapshot } from 'firebase/firestore'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { db } from '../../firebase'
@@ -12,21 +12,26 @@ import styles from './Feed.module.scss'
 
 export default function Feed({ className }) {
     const dispatch = useDispatch()
-    const currentUser = useSelector((state) => state.user.currentUser)
-    const collectionRef = collection(db, `users/${currentUser.id}/post`)
+    const collectionRef = collection(db, 'post')
     let posts = [...useSelector((state) => state.post.posts)].sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     )
     useEffect(() => {
-        getDocs(collectionRef).then((data) => {
-            dispatch(
-                postActions.setPosts(
-                    data.docs.map((doc) => {
-                        return { ...doc.data(), id: doc.id }
-                    })
+        onSnapshot(
+            collectionRef,
+            (data) => {
+                dispatch(
+                    postActions.setPosts(
+                        data.docs.map((doc) => {
+                            return { id: doc.id, ...doc.data() }
+                        })
+                    )
                 )
-            )
-        })
+            },
+            (err) => {
+                alert(err)
+            }
+        )
     }, [])
 
     return (

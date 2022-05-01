@@ -3,7 +3,7 @@ import styles from './CommitCard.module.scss'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import clsx from 'clsx'
 export default function CommitCard({
-    handleShowAlert,
+    handleHideAlert,
     handleAlertActions,
     title,
     messenger,
@@ -17,14 +17,14 @@ export default function CommitCard({
             <div className={styles.title}>
                 {title}
                 <AiOutlineCloseCircle
-                    onClick={handleShowAlert}
+                    onClick={handleHideAlert}
                     className={styles.icon}
                 />
             </div>
             <div className={styles.messenger}>{messenger}</div>
             <div className={styles.actionBtns}>
                 <button
-                    onClick={handleShowAlert}
+                    onClick={handleHideAlert}
                     className={clsx(
                         'btn',
                         styles.actionBtn,

@@ -4,18 +4,31 @@ import { BsFillEmojiSmileFill, BsFillImageFill } from 'react-icons/bs'
 import { TiVideo } from 'react-icons/ti'
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from '../Modal/Modal'
-import CreatePost from '../Popup/CreatePost/CreatePost'
-import { shareActions } from '../Store/share-slice'
+import SharePost from '../Popup/SharePost/SharePost'
+import { postActions } from '../Store/post-slice'
 import UserAvatar from '../User/UserAvatar'
 import styles from './Share.module.scss'
 export default function Share() {
     const currentUser = useSelector((state) => state.user.currentUser)
-    const isShowCreatePost = useSelector(
-        (state) => state.share.isShowCreatePost
-    )
+    const isShowCreatePost = useSelector((state) => state.post.isShowCreatePost)
     const dispatch = useDispatch()
     const handleShowCreatePost = () => {
-        dispatch(shareActions.setIsShowCreatePost())
+        dispatch(postActions.setIsShowCreatePost(true))
+        dispatch(
+            postActions.setPost({
+                uid: '',
+                sharetype: '',
+                createdAt: '',
+                content: '',
+                img: '',
+                comments: [],
+                likes: [],
+                shares: [],
+            })
+        )
+    }
+    const handHideCreatePostModal = () => {
+        dispatch(postActions.setIsShowCreatePost(false))
     }
     return (
         <div className={styles.share}>
@@ -46,8 +59,11 @@ export default function Share() {
                 </li>
             </ul>
             {isShowCreatePost && (
-                <Modal handleShowModal={handleShowCreatePost}>
-                    <CreatePost handleShowModal={handleShowCreatePost} />
+                <Modal handleHideModal={handHideCreatePostModal}>
+                    <SharePost
+                        title={'Create Post'}
+                        handleHideModal={handHideCreatePostModal}
+                    />
                 </Modal>
             )}
         </div>

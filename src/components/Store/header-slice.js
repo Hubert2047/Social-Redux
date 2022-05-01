@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 const headerSlice = createSlice({
     name: 'header',
     initialState: {
-        isOpenSetting: false,
+        isOpenSetting: null,
         activeNavbarId: 1,
     },
     reducers: {
-        setOpenSetting(state) {
-            state.isOpenSetting = !state.isOpenSetting
+        setOpenSetting(state, action) {
+            state.isOpenSetting = action.payload
         },
         setActiveNavbarId(state, action) {
             state.activeNavbarId = action.payload

@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
+
 const firebaseConfig = {
     apiKey: 'AIzaSyDj8vHRmIyCd-O1vAjIVi5D-V5Md6SOvfI',
     authDomain: 'social-redux-toolkit.firebaseapp.com',
@@ -21,4 +22,5 @@ const db = getFirestore(app) // lay ra db
 const googleProvider = new GoogleAuthProvider()
 const signInWithGoogle = () => signInWithPopup(auth, googleProvider)
 const storage = getStorage(app) //luu file img vao store
+
 export { db, signInWithGoogle, storage }

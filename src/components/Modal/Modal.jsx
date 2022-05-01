@@ -1,8 +1,8 @@
 import { React } from 'react'
 import styles from './Modal.module.scss'
-export default function Modal({ children, handleShowModal }) {
+export default function Modal({ children, handleHideModal }) {
     return (
-        <div className={styles.modal} onClick={handleShowModal}>
+        <div className={styles.modal} onClick={handleHideModal}>
             {children}
         </div>
     )

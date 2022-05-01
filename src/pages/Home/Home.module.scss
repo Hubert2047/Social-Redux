@@ -10,7 +10,9 @@
         left: 0;
         align-self: start;
         width: 30%;
-        overflow-y: scroll;
+        &:hover {
+            overflow-y: scroll;
+        }
     }
     .feed {
         width: 40%;
@@ -23,5 +25,8 @@
         width: 30%;
         align-items: start;
         overflow: hidden;
+        &:hover {
+            overflow-y: scroll;
+        }
     }
 }

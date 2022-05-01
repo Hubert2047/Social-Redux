@@ -10,7 +10,7 @@ import styles from './UserSettingList.module.scss'
 export default function UserSettingList() {
     const dispatch = useDispatch()
     const handleLogOut = () => {
-        dispatch(userActions.setUser({}))
+        dispatch(userActions.setCurrentUser({}))
     }
     return (
         <ul className={clsx(styles.settingList, 'd-flex-c')}>

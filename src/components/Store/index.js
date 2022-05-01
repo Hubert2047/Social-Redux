@@ -9,12 +9,12 @@ import {
     REHYDRATE,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import feedSlice from './feed-slice'
-import headerSlice from './header-slice'
-import postSlile from './post-slice'
-import userSlice from './user-slice'
-import shareSlice from './share-slice'
 import commentSlice from './comment-slice'
+import headerSlice from './header-slice'
+import modalSlice from './modal-slice'
+import postSlile from './post-slice'
+import shareSlice from './share-slice'
+import userSlice from './user-slice'
 
 const persistConfig = {
     key: 'root',
@@ -27,9 +27,9 @@ const store = configureStore({
     reducer: {
         share: shareSlice.reducer,
         post: postSlile.reducer,
-        feed: feedSlice.reducer,
         header: headerSlice.reducer,
         comment: commentSlice.reducer,
+        modal: modalSlice.reducer,
         user: persistedReducer,
     },
     middleware: (getDefaultMiddleware) =>
