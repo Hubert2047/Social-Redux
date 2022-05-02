@@ -1,0 +1,23 @@
+.musicCard {
+    height: 100%;
+    gap: 0.3rem;
+    align-items: center;
+}
+.songPoster {
+    width: 6rem;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+}
+.content {
+    gap: 0.2rem;
+    color: var(--grey-color);
+}
+.songName {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.singerName {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
