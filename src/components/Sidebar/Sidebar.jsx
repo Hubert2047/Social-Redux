@@ -1,10 +1,10 @@
-import styles from './Sidebar.module.scss'
 import clsx from 'clsx'
-import SidebarBtn from '../Button/SidebarBtn'
-import { user } from '../../data/api.js'
-import ShortCut from '../ShortCut/ShortCutCard'
-import SidebarItem from './SidebarItem/SideBarItem'
+import { user } from '../../data/api'
 import { sidebarHomeItems } from '../../data/api.js'
+import SidebarBtn from '../Button/SidebarBtn'
+import ShortCut from '../ShortCut/ShortCutCard'
+import styles from './Sidebar.module.scss'
+import SidebarItem from './SidebarItem/SideBarItem'
 export default function Sidebar({ className, header, sidebarItems }) {
     return (
         <div className={clsx(styles.sidebar, className)}>

@@ -64,11 +64,20 @@
         }
     }
     .optionBtns {
+        position: relative;
         display: flex;
         justify-content: space-between;
         font-size: 2.5rem;
         padding: 1rem 0;
         cursor: pointer;
+    }
+    .stiken {
+        position: absolute;
+        z-index: 2;
+        box-shadow: var(--box-shadow);
+        top: 0;
+        left: 0;
+        transform: translate(60%, -100%);
     }
     .optionBtnStyle1 {
         color: var(--purple-color);

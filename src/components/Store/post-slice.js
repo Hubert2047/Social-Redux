@@ -49,6 +49,9 @@ const postSlice = createSlice({
         setIsShowCreatePost(state, action) {
             state.isShowCreatePost = action.payload
         },
+        setPickIcon(state, action) {
+            state.post.content = state.post.content.concat(action.payload)
+        },
 
         // addComment(state, action) {
         //     const currentPost = state.posts.find(

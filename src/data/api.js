@@ -4,6 +4,7 @@ import {
     BsFillBookmarkStarFill,
     BsFillQuestionCircleFill,
     BsInbox,
+    BsMusicNoteList,
     BsPhone,
     BsShop,
     BsSuitHeartFill,
@@ -808,12 +809,18 @@ export const navBtns = [
     },
     {
         id: 4,
+        icon: <BsMusicNoteList className='nav-icon' />,
+        name: 'Media',
+        link: '/',
+    },
+    {
+        id: 5,
         icon: <MdOndemandVideo className='nav-icon' />,
         name: 'Videos',
         link: '/',
     },
     {
-        id: 5,
+        id: 6,
         icon: <SiHomeassistantcommunitystore className='nav-icon' />,
         name: 'Marketplace',
         link: '/marketplace',

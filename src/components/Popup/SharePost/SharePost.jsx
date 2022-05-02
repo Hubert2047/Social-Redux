@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Picker from 'emoji-picker-react'
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { React, useLayoutEffect, useRef, useState } from 'react'
@@ -28,6 +29,18 @@ export default function SharePost({ title, handleHideModal }) {
     const [imgData, setImgData] = useState({})
     const isDisableSubmit = post.content.length === 0 && post.img === ''
     const inputRef = useRef()
+    const [isDisplayIconPicker, SetisDisplayIconPicker] = useState(false)
+    const onEmojiClick = (e, emojiObject) => {
+        e.stopPropagation()
+        inputRef.current.focus()
+        dispatch(postActions.setPickIcon(emojiObject.emoji))
+    }
+    const handleShowIcoPicker = () => {
+        SetisDisplayIconPicker((prev) => !prev)
+    }
+    const handleInputClick = () => {
+        SetisDisplayIconPicker(false)
+    }
     useLayoutEffect(() => {
         inputRef.current.focus()
     }, [])
@@ -145,6 +158,8 @@ export default function SharePost({ title, handleHideModal }) {
                             onFocus={() => {
                                 inputRef.current.value = post.content
                             }}
+                            value={post.content}
+                            onClick={handleInputClick}
                             className={styles.shareText}
                             placeholder={`What's on your mind, ${currentUser.firstName}?`}
                         />
@@ -160,7 +175,30 @@ export default function SharePost({ title, handleHideModal }) {
                     </div>
                     <div className={styles.optionBtns}>
                         <MdColorLens className={styles.optionBtnStyle1} />
-                        <BsEmojiSmile className={styles.optionBtnStyle2} />
+                        <BsEmojiSmile
+                            onClick={handleShowIcoPicker}
+                            className={styles.optionBtnStyle2}
+                        />
+                        {isDisplayIconPicker && (
+                            <div className={styles.stiken}>
+                                <Picker
+                                    aria-label=''
+                                    disableSearchBar={true}
+                                    onEmojiClick={onEmojiClick}
+                                    groupNames={{
+                                        smileys_people: '',
+                                        animals_nature: '',
+                                        food_drink: '',
+                                        travel_places: '',
+                                        activities: '',
+                                        objects: '',
+                                        symbols: '',
+                                        flags: '',
+                                        recently_used: '',
+                                    }}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className={styles.bodyBottom}>

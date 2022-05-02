@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     BrowserRouter as Router,
     Navigate,
@@ -7,13 +6,13 @@ import {
     Routes,
 } from 'react-router-dom'
 import Header from './components/Header/Header'
+import { headerActions } from './components/Store/header-slice'
+import { postActions } from './components/Store/post-slice'
 import Error from './pages/Error/Error'
 import Home from './pages/Home/Home'
 import MarketPlace from './pages/MarketPlace/MarketPlace'
+import Media from './pages/Media/Media'
 import Register from './pages/Register/Register'
-import { postActions } from './components/Store/post-slice'
-import { headerActions } from './components/Store/header-slice'
-import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react'
 function App() {
     const isLogin = useSelector((state) => state.user.isLogin)
     const dispatch = useDispatch()
@@ -42,34 +41,10 @@ function App() {
             }
         })
     }
-    const [chosenEmoji, setChosenEmoji] = useState(null)
-    const onEmojiClick = (event, emojiObject) => {
-        setChosenEmoji(emojiObject)
-    }
+
     return (
         <div onClick={handleModal}>
-            {chosenEmoji ? (
-                <input type='text' value={chosenEmoji.emoji} />
-            ) : (
-                <span>No emoji Chosen</span>
-            )}
-            <Picker
-                onEmojiClick={onEmojiClick}
-                groupNames={{
-                    smileys_people: 'hehe',
-                    animals_nature: 'cute dogs and also trees',
-                    food_drink: 'milkshakes and more',
-                    travel_places: 'I love trains',
-                    activities: 'lets play a game',
-                    objects: 'stuff',
-                    symbols: 'more stuff',
-                    flags: 'fun with flags',
-                    recently_used: 'did I really use those?!',
-                }}
-                // skinTone={SKIN_TONE_MEDIUM_DARK}
-            />
-
-            {/* <Router>
+            <Router>
                 {isLogin && <Header />}
                 <Routes>
                     <Route
@@ -89,6 +64,16 @@ function App() {
                         }
                     />
                     <Route
+                        path='/media'
+                        element={
+                            isLogin ? (
+                                <Media to='/' />
+                            ) : (
+                                <Navigate to='/register' />
+                            )
+                        }
+                    />
+                    <Route
                         path='marketPlace'
                         element={
                             isLogin ? (
@@ -100,7 +85,7 @@ function App() {
                     />
                     <Route path='*' element={<Error />} />
                 </Routes>
-            </Router> */}
+            </Router>
         </div>
     )
 }

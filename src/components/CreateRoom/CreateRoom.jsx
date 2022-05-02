@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 import { RiVideoAddFill } from 'react-icons/ri'
-import { user } from '../../data/api.js'
+import { user } from '../../data/api'
 import UserState from '../User/UserState'
 import styles from './CreateRoom.module.scss'
 export default function CreateRoom({ className }) {

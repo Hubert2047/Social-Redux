@@ -34,10 +34,21 @@
         font-size: 1.4rem;
         flex: 1;
     }
-    .actionBtn {
+    .actionBtns {
+        position: relative;
+        height: 100%;
         font-size: 3rem;
         display: flex;
         align-items: center;
+        list-style: none;
+    }
+    .stiken {
+        position: absolute;
+        z-index: 2;
+        box-shadow: var(--box-shadow);
+        top: 0;
+        left: 0;
+        transform: translate(-90%, -105%);
     }
     .actionIcon {
         padding: 0.5rem;
