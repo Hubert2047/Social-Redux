@@ -28,26 +28,32 @@
     flex: 1;
 }
 .wave {
-    width: 5px;
+    width: 3px;
     align-self: flex-end;
     background-color: var(--blue-color);
-    animation: waveAnimated 0.3s linear alternate infinite;
     animation-fill-mode: forwards;
 }
+.waveAnimated {
+    animation: waveAnimated 0.3s linear alternate infinite;
+}
 .wave1 {
-    height: 15px;
+    height: 10px;
 }
 .wave2 {
-    height: 25px;
+    height: 14px;
     animation-delay: 0.1s;
 }
 .wave3 {
-    height: 20px;
+    height: 6px;
     animation-delay: 0.2s;
 }
 .wave4 {
-    height: 10px;
+    height: 12px;
     animation-delay: 0.3s;
+}
+.wave5 {
+    height: 16px;
+    animation-delay: 0.4s;
 }
 .groupControls {
     gap: 1rem;
@@ -81,14 +87,14 @@
     left: 0;
     width: 100%;
     opacity: 0;
+    cursor: pointer;
 }
 .bar {
     position: relative;
     width: 100%;
     height: 8px;
-    cursor: pointer;
     flex: 1;
-    margin-left: 0.5rem;
+    margin: 0 1rem;
     background-color: var(--white-color);
     border-radius: var(--border-radius-md);
 }
@@ -97,7 +103,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    width: 20%;
+    width: 0%;
     height: 8px;
     border-radius: var(--border-radius-md);
     background-color: var(--blue-color);
@@ -109,6 +115,7 @@
     z-index: 1000000;
     height: 1.4rem;
     width: 1.4rem;
+    cursor: pointer;
     background-color: var(--blue-color);
     border-radius: 50%;
     &::before {
@@ -120,7 +127,7 @@
         left: -4px;
         border: 1px solid var(--blue-color);
         border-radius: 50%;
-        box-shadow: inset 0px 0px 4px var(--blue-color);
+        box-shadow: inset 0px 0px 10px var(--blue-color);
     }
 }
 .right {
@@ -143,7 +150,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    width: 40%;
+    width: 0%;
     height: 8px;
     border-radius: var(--border-radius-md);
     background-color: var(--blue-color);
@@ -191,10 +198,10 @@
 }
 @keyframes waveAnimated {
     0% {
-        height: 10px;
+        height: 8px;
     }
     50% {
-        height: 20px;
+        height: 15px;
     }
     100% {
         height: 30px;
