@@ -12,6 +12,7 @@ import SongCard from '../SongCard/SongCard'
 import Wave from '../Wave/Wave'
 import styles from './MediaFooter.module.scss'
 const calAudioCurrentTime = (audioCurrentTime, audioDuration) => {
+    console.log(window.pageXOffset)
     let currentTimeMin = Math.floor(audioCurrentTime / 60)
     currentTimeMin = currentTimeMin < 10 ? `0${currentTimeMin}` : currentTimeMin
     let currentTimeSec = Math.floor(audioCurrentTime % 60)
@@ -248,7 +249,7 @@ export default function MediaFooter() {
                             className={clsx(styles.backBtn, styles.controlBtn)}
                         />
                         {isShowPrevSong && (
-                            <div className={styles.prevSong} v>
+                            <div className={styles.prevSong}>
                                 <SongCard
                                     song={prevSong}
                                     textStyle={sonCardTextStyle}
@@ -258,15 +259,17 @@ export default function MediaFooter() {
                     </div>
                     {!isLoaded && <MediaWhiteLoading />}
                     {isLoaded && !isPaused && (
-                        <IoIosPause
-                            onClick={handleOnOff}
-                            className={clsx(styles.onBtn, styles.controlBtn)}
-                        />
+                        <div className={clsx(styles.onBox, 'd-flex-r')}>
+                            <IoIosPause
+                                onClick={handleOnOff}
+                                className={clsx(styles.onBtn)}
+                            />
+                        </div>
                     )}
                     {isLoaded && isPaused && (
                         <IoCaretBackCircleOutline
                             onClick={handleOnOff}
-                            className={clsx(styles.offBtn, styles.controlBtn)}
+                            className={clsx(styles.offBtn)}
                         />
                     )}
                     <div className={styles.nextSongBox}>

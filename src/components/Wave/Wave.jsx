@@ -1,6 +1,6 @@
-import styles from './Wave.module.scss'
 import clsx from 'clsx'
 import React from 'react'
+import styles from './Wave.module.scss'
 export default function Wave() {
     return (
         <div className={clsx(styles.waves, 'd-flex-r')}>

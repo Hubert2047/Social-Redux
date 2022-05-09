@@ -7,6 +7,10 @@
     border-bottom: 1px solid var(--grey-color-4);
     border-top: 1px solid var(--grey-color-4);
     box-shadow: var(--box-shadow);
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
     // background: url('https://firebasestorage.googleapis.com/v0/b/social-redux-toolkit.appspot.com/o/images%2Favater%20-%20the%20cu%20tru.jpg?alt=media&token=cee098c9-3a9f-42db-a176-d7fd8c14242c')
     //         repeat,
     //     -webkit-linear-gradient(top, #7abcff 0%, #4096ee 100%);

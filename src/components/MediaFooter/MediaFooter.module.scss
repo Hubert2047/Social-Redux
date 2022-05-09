@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 10vh;
+    height: 10.5vh;
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 2rem;
@@ -17,7 +17,27 @@
     gap: 1rem;
     height: 100%;
 }
-
+.onBox {
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2.5px solid transparent;
+    box-shadow: 0 0 0.5rem var(--white-color);
+    background: linear-gradient(#534e52, #534e52) padding-box,
+        linear-gradient(-90deg, #c6ffdd, #fbd786, #f7797d) border-box;
+    border-radius: 50%;
+    background-size: 400%;
+    animation: btnAnimated 5s linear alternate infinite;
+}
+.onBtn {
+    font-size: 2.5rem;
+    color: var(--white-color);
+}
+.offBtn {
+    font-size: 3rem;
+    color: var(--white-color);
+}
 .likeControl {
     color: var(--grey-color-4);
     font-size: 2.5rem;
@@ -89,13 +109,10 @@
     text-transform: capitalize;
 }
 
-.onBtn,
-.offBtn {
-    font-size: 3.5rem;
-}
 .mid {
     flex: 3;
     padding: 0 6vw;
+    gap: 0.5rem;
 }
 .thumpBox {
     position: relative;
@@ -226,4 +243,16 @@
     font-size: 2.2rem;
     cursor: pointer;
     color: var(--white-color);
+}
+@keyframes btnAnimated {
+    0% {
+        background-position: 100%;
+    }
+
+    50% {
+        background-position: 200%;
+    }
+    100% {
+        background-position: 300%;
+    }
 }
