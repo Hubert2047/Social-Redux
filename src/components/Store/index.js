@@ -15,6 +15,7 @@ import modalSlice from './modal-slice'
 import postSlile from './post-slice'
 import shareSlice from './share-slice'
 import userSlice from './user-slice'
+import mediaSlice from './media-slice'
 
 const persistConfig = {
     key: 'root',
@@ -31,6 +32,7 @@ const store = configureStore({
         comment: commentSlice.reducer,
         modal: modalSlice.reducer,
         user: persistedReducer,
+        media: mediaSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

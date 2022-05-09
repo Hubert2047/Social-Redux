@@ -12,13 +12,13 @@ let persistor = persistStore(store)
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement)
 root.render(
-    <React.StrictMode>
-        <GlobalStyles>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    <App />
-                </PersistGate>
-            </Provider>
-        </GlobalStyles>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <GlobalStyles>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <App />
+            </PersistGate>
+        </Provider>
+    </GlobalStyles>
+    // </React.StrictMode>
 )

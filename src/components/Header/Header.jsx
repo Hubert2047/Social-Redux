@@ -27,7 +27,9 @@ export default function Header() {
     return (
         <div className={styles.header}>
             {/* logo */}
-            <div className={styles.logo}>Avatar</div>
+            <div className={styles.logo}>
+                Like <sub>You</sub>{' '}
+            </div>
             {/* heaader search */}
             <SearchPrimary placeholder={'Search '} />
             {/* header nav */}

@@ -1,0 +1,33 @@
+.mediaWhiteLoading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //     position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.mediaWhiteLoading:after {
+    content: ' ';
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 1.5rem solid var(--white-color);
+    border-color: var(--white-color) transparent var(--white-color) transparent;
+    animation: mediaWhiteLoading 1s infinite;
+}
+@keyframes mediaWhiteLoading {
+    0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+        transform: rotate(1800deg);
+    }
+}

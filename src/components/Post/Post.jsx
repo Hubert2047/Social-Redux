@@ -122,7 +122,7 @@ export default function Post({ post }) {
                                     <span>Edit post</span>
                                 </li>
                             )}
-                            {post.uid === currentUser.uid && (
+                            {post.uid === currentUser.uidw && (
                                 <li
                                     onClick={handleShowAlert}
                                     className={clsx(

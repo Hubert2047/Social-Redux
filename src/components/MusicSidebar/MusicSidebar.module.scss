@@ -1,0 +1,63 @@
+.musicSidebar {
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: var(--box-shadow);
+    background-color: var(--black-color-2);
+}
+.homeIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    fill: var(--grey-color-4);
+    border-bottom: 1px solid var(--grey-color-4);
+    cursor: pointer;
+    &:hover {
+        fill: var(--green-color);
+    }
+}
+.optionBox {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--grey-color-4);
+}
+.createPlaylist {
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.optionTitle {
+    font-size: 1.4rem;
+    color: var(--grey-color-2);
+    &:hover {
+        color: var(--green-color);
+    }
+}
+.createPlaylistIcon {
+    font-size: 2rem;
+    color: var(--blue-color);
+}
+.likedIcon {
+    font-size: 2.1rem;
+    margin-left: -1px;
+    color: var(--red-color);
+}
+.likeSongs {
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.albumBox {
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.albumIcon {
+    font-size: 2rem;
+    color: var(--blue-color);
+}
+.albumTitle {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--grey-color-2);
+}
+.albumList {
+}

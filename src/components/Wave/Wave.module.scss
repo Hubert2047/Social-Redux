@@ -1,0 +1,43 @@
+.waves {
+    gap: 1px;
+    align-self: flex-end;
+}
+.wave {
+    width: 2px;
+    align-self: flex-end;
+    background-color: var(--green-color-2);
+    animation: waveAnimated 0.5s linear alternate infinite;
+    animation-fill-mode: forwards;
+    border-radius: var(--border-radius-md);
+}
+.wave1 {
+    height: 10px;
+}
+.wave2 {
+    height: 14px;
+    animation-delay: 0.1s;
+}
+.wave3 {
+    height: 6px;
+    animation-delay: 0.3s;
+}
+.wave4 {
+    height: 12px;
+    animation-delay: 0.6s;
+}
+.wave5 {
+    height: 16px;
+    animation-delay: 0.4s;
+}
+@keyframes waveAnimated {
+    0% {
+        height: 8px;
+    }
+
+    50% {
+        height: 10px;
+    }
+    100% {
+        height: 25px;
+    }
+}

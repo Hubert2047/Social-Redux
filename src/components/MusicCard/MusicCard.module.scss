@@ -1,23 +1,47 @@
 .musicCard {
-    height: 100%;
-    gap: 0.3rem;
+    display: grid;
+    grid-template-columns: 5% 1fr 10%;
     align-items: center;
+    column-gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+    &:hover {
+        background-color: var(--purple-color-2);
+    }
 }
-.songPoster {
-    width: 6rem;
-    height: 100%;
-    object-fit: cover;
+.likeBox {
+    position: relative;
+}
+.musicOptionCard {
+    position: absolute;
+    z-index: 10000;
+    top: -20%;
+    left: 0;
+    transform: translateX(-100%);
     border-radius: var(--border-radius-md);
 }
-.content {
-    gap: 0.2rem;
-    color: var(--grey-color);
+.order {
+    font-size: 1.5rem;
+    justify-self: center;
+    color: var(--grey-color-2);
 }
-.songName {
-    font-size: 1.3rem;
-    font-weight: 600;
+.playBtn {
+    font-size: 2rem;
+    color: var(--white-color);
 }
-.singerName {
-    font-size: 1.2rem;
-    text-transform: capitalize;
+
+.option {
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+.iconBox {
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    &:hover {
+        background-color: var(--purple-color-1);
+    }
 }

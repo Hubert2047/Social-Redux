@@ -792,7 +792,7 @@ export const navBtns = [
     {
         id: 1,
         icon: <AiOutlineHome className='nav-icon' />,
-        name: 'Home',
+        name: 'Feeds',
         link: '/',
     },
     {
@@ -804,14 +804,14 @@ export const navBtns = [
     {
         id: 3,
         icon: <IoIosPeople className='nav-icon' />,
-        name: 'Group',
+        name: 'Groups',
         link: '/',
     },
     {
         id: 4,
         icon: <BsMusicNoteList className='nav-icon' />,
         name: 'Media',
-        link: '/',
+        link: '/Media',
     },
     {
         id: 5,

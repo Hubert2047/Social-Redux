@@ -9,6 +9,8 @@
     --grey-white-color: #f0f2f5;
     --white-color: #ffffff;
     --black-color: #1b1a17;
+    --black-color-1: #171022;
+    --black-color-2: #272030;
     --red-color: #fa383e;
     --grey-color: #d8d2cb;
     --grey-color-1: #303338;
@@ -18,8 +20,11 @@
     --grey-color-5: #f0f2f5;
     --grey-color-6: #eff2f5;
     --green-color: #00a400;
+    --green-color-2: #83bd75;
     --lemon-color: #f5c33b;
     --purple-color: #9900f0;
+    --purple-color-1: #3f2471;
+    --purple-color-2: #553f80;
     --blue-color: #3578e5;
     --main-padding: 0 2rem;
     --header-heigh: 4.5rem;
@@ -71,7 +76,9 @@ html {
         }
     }
 }
-
+.grey-color {
+    color: var(--grey-color-2) !important;
+}
 .btn {
     // padding: 0.3em 0.8em;
     border: none;

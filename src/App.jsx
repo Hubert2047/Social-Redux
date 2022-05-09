@@ -6,6 +6,8 @@ import {
     Routes,
 } from 'react-router-dom'
 import Header from './components/Header/Header'
+import MusicHome from './components/MusicHome/MusicHome'
+import MusicPlayList from './components/MusicPlayList/MusicPlayList'
 import { headerActions } from './components/Store/header-slice'
 import { postActions } from './components/Store/post-slice'
 import Error from './pages/Error/Error'
@@ -66,13 +68,11 @@ function App() {
                     <Route
                         path='/media'
                         element={
-                            isLogin ? (
-                                <Media to='/' />
-                            ) : (
-                                <Navigate to='/register' />
-                            )
-                        }
-                    />
+                            isLogin ? <Media /> : <Navigate to='/register' />
+                        }>
+                        <Route index element={<MusicHome />} />
+                        <Route path=':playlistId' element={<MusicPlayList />} />
+                    </Route>
                     <Route
                         path='marketPlace'
                         element={

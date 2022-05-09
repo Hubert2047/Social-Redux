@@ -1,0 +1,50 @@
+.musicPlaylist {
+    padding: 1rem;
+    height: calc(90vh - 4.5rem);
+    // background-color: var(--primary-color);
+}
+.header {
+    padding: 2rem;
+    margin-bottom: 1rem;
+    // border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow);
+}
+.img {
+    // flex: 1;
+    height: 10rem;
+    width: 10rem;
+    box-shadow: var(--box-shadow);
+}
+.photo {
+    height: 100%;
+    width: 100%;
+    border-radius: var(--border-radius-md);
+}
+.headerContent {
+    flex: 1;
+    gap: 1rem;
+    padding: 0 4rem;
+    justify-content: center;
+
+    // align-items: center;
+}
+.headerTitle {
+    font-size: 4rem;
+    text-transform: capitalize;
+    color: var(--grey-color-4);
+    // flex: 1;
+}
+.information {
+    align-items: center;
+    gap: 0.5rem;
+    & span {
+        font-size: 1.3rem;
+        color: var(--grey-color-4);
+    }
+}
+.user {
+    color: var(--grey-color-4);
+}
+.musicList {
+    flex: 1;
+}
