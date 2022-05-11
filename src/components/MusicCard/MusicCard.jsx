@@ -12,17 +12,19 @@ import styles from './MusicCard.module.scss'
 
 export default function MusicCard({ order, song }) {
     const dispatch = useDispatch()
-    const [isShowOptionTable, setIsShowOptionTable] = useState(false)
     const currentPlaylist = useSelector((state) => state.media.currentPlaylist)
-    // const songIndex = currentPlaylist.findIndex((item) => item.id === song.id)
     const currentSongIndex = useSelector(
         (state) => state.media.currentSongIndex
     )
     const isLoaded = useSelector((state) => state.media.isLoaded)
+    const isShowOptionTable =
+        useSelector((state) => state.media.showOptionTableId) === song.id
     const currentSong = currentPlaylist[currentSongIndex]
     const [isMusicCardHovered, setIsMusicCardHovered] = useState(false)
     const isPaused = useSelector((state) => state.media.isPaused)
     const optionIconRef = useRef()
+    const [optionTableStyle, setOptionTableStyle] = useState({})
+    const musicCardRef = useRef()
     const optionTableRef = useRef()
 
     const isDisplayWave =
@@ -58,13 +60,35 @@ export default function MusicCard({ order, song }) {
     //232
     const handleIconOptionOnClick = (e) => {
         e.stopPropagation()
+        dispatch(mediaActions.setShowOptionTableId(song.id))
+        const tableHeight = optionTableRef.current.offsetHeight
+        const rangeOfIconToTopParrentElm =
+            optionIconRef.current.getBoundingClientRect().top -
+            musicCardRef.current.parentNode.getBoundingClientRect().top
 
-        setIsShowOptionTable((prev) => !prev)
-
-        console.log(optionIconRef.current.getBoundingClientRect().bottom)
+        const rangeOfIconToBottomParrentElm =
+            musicCardRef.current.parentNode.getBoundingClientRect().bottom -
+            optionIconRef.current.getBoundingClientRect().top
+        if (rangeOfIconToBottomParrentElm > tableHeight) {
+            setOptionTableStyle({})
+        } else if (rangeOfIconToTopParrentElm > tableHeight + 10) {
+            setOptionTableStyle({
+                transform: `translate(-100%, -${
+                    rangeOfIconToTopParrentElm - 10
+                }px)`,
+            })
+        } else {
+            const randomHeight = Math.floor(Math.random() * (100 - 20) + 20)
+            setOptionTableStyle({
+                transform: `translate(-100%, -${
+                    rangeOfIconToTopParrentElm - randomHeight
+                }px)`,
+            })
+        }
     }
     return (
         <div
+            ref={musicCardRef}
             className={styles.musicCard}
             onMouseEnter={handleMusicCardOnMouseEnter}
             onMouseLeave={handleMusicCardOnMouseLeave}
@@ -80,7 +104,7 @@ export default function MusicCard({ order, song }) {
                 textStyle={isMusicCardHovered ? onMouseEnterTextStyle : {}}
             />
             <div className={clsx(styles.option, 'd-flex-r')}>
-                {true && (
+                {isMusicCardHovered && (
                     <div className={styles.likeBox}>
                         <div
                             ref={optionIconRef}
@@ -88,13 +112,17 @@ export default function MusicCard({ order, song }) {
                             className={clsx(styles.iconBox, 'd-flex-r')}>
                             <BsThreeDots className={styles.playBtn} />
                         </div>
-                        {song.id === currentPlaylist[0].id && (
-                            <div
-                                ref={optionTableRef}
-                                className={styles.musicOptionCard}>
-                                <MusicOptionCard song={song} />
-                            </div>
-                        )}
+                        <div
+                            ref={optionTableRef}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                            }}
+                            style={optionTableStyle}
+                            className={clsx(styles.musicOptionCard, {
+                                [styles.showwOptionTable]: isShowOptionTable,
+                            })}>
+                            <MusicOptionCard song={song} />
+                        </div>
                     </div>
                 )}
             </div>

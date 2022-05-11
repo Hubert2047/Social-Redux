@@ -77,8 +77,10 @@ const mediaSlice = createSlice({
         },
         isLoaded: false,
         isPaused: true,
+        preMusics: [],
+        showOptionTableId: null,
         prevSongIndex: null,
-        currentSongIndex: 0,
+        currentSongIndex: null,
         currentPlaylist: [],
     },
     reducers: {
@@ -95,11 +97,22 @@ const mediaSlice = createSlice({
             state.currentPlaylist = action.payload
         },
         setCurrentSongIndex(state, action) {
-            state.prevSongIndex = state.currentSongIndex
+            state.preMusics.unshift(state.currentSongIndex)
             state.currentSongIndex = action.payload
         },
         setIsLoaded(state, action) {
             state.isLoaded = action.payload
+        },
+        setPrevIndex(state, action) {
+            state.currentSongIndex = state.preMusics[0]
+            state.preMusics.splice(0, 2)
+        },
+        setShowOptionTableId(state, action) {
+            if (action.payload === state.showOptionTableId) {
+                state.showOptionTableId = null
+            } else {
+                state.showOptionTableId = action.payload
+            }
         },
     },
 })

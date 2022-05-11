@@ -10,16 +10,23 @@
         background-color: var(--purple-color-2);
     }
 }
+
 .likeBox {
     position: relative;
 }
+.showwOptionTable {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 .musicOptionCard {
     position: absolute;
-    z-index: 10000;
+    visibility: hidden;
     top: -20%;
     left: 0;
+    opacity: 0;
     transform: translateX(-100%);
     border-radius: var(--border-radius-md);
+    transition: all 0.3s linear;
 }
 .order {
     font-size: 1.5rem;

@@ -5,7 +5,6 @@ import styles from './MusicHome.module.scss'
 
 export default function MusicHome() {
     const musicList = useSelector((state) => state.media.currentPlaylist)
-    // console.log('musichome', musicList)
     return (
         <div className={styles.musicHome}>
             <div className={styles.slider}>
