@@ -3,6 +3,7 @@ import { React, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { mediaActions } from '../../components/Store/media-slice'
 import { db } from '../../firebase'
+import MusicList from './../MusicList/MusicList'
 import styles from './MusicHome.module.scss'
 
 export default function MusicHome() {
@@ -28,7 +29,6 @@ export default function MusicHome() {
             }
         )
     }, [])
-    let order = 0
 
     return (
         <div className={styles.musicHome}>
@@ -40,13 +40,7 @@ export default function MusicHome() {
                 />
             </div>
             <h2 className={styles.playlistTitle}>Top Musics</h2>
-            {/* <MusicList musicList={musicList} /> */}
-            {/* <ul className={styles.musicList}>
-                {musicList?.map((song) => {
-                    order++
-                    return <MusicCard order={order} key={song.id} song={song} />
-                })}
-            </ul> */}
+            <MusicList musicList={musicList} />
         </div>
     )
 }
