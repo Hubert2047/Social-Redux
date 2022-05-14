@@ -1,5 +1,6 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+// import { createRoot } from 'react-dom'
+import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -10,15 +11,17 @@ import './index.scss'
 
 let persistor = persistStore(store)
 const rootElement = document.getElementById('root')
-const root = createRoot(rootElement)
-root.render(
-    // <React.StrictMode>
-    <GlobalStyles>
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <App />
-            </PersistGate>
-        </Provider>
-    </GlobalStyles>
-    // </React.StrictMode>
+// const root = createRoot(rootElement)
+ReactDOM.render(
+    <React.StrictMode>
+        <GlobalStyles>
+            {/* //store redux */}
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <App />
+                </PersistGate>
+            </Provider>
+        </GlobalStyles>
+    </React.StrictMode>,
+    document.getElementById('root')
 )

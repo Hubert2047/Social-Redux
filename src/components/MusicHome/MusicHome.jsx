@@ -1,10 +1,35 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import MusicList from '../MusicList/MusicList'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { React, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { mediaActions } from '../../components/Store/media-slice'
+import { db } from '../../firebase'
 import styles from './MusicHome.module.scss'
 
 export default function MusicHome() {
     const musicList = useSelector((state) => state.media.currentPlaylist)
+    const collectionRef = collection(db, 'musics')
+    const dispatch = useDispatch()
+    useEffect(() => {
+        onSnapshot(
+            collectionRef,
+            (data) => {
+                let index = -1
+                dispatch(
+                    mediaActions.setMusics(
+                        data.docs.map((doc) => {
+                            index++
+                            return { id: doc.id, index: index, ...doc.data() }
+                        })
+                    )
+                )
+            },
+            (err) => {
+                alert(err)
+            }
+        )
+    }, [])
+    let order = 0
+
     return (
         <div className={styles.musicHome}>
             <div className={styles.slider}>
@@ -15,7 +40,13 @@ export default function MusicHome() {
                 />
             </div>
             <h2 className={styles.playlistTitle}>Top Musics</h2>
-            <MusicList musicList={musicList} />
+            {/* <MusicList musicList={musicList} /> */}
+            {/* <ul className={styles.musicList}>
+                {musicList?.map((song) => {
+                    order++
+                    return <MusicCard order={order} key={song.id} song={song} />
+                })}
+            </ul> */}
         </div>
     )
 }

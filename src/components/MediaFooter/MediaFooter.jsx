@@ -1,12 +1,10 @@
 import clsx from 'clsx'
-import { collection, onSnapshot } from 'firebase/firestore'
-import { React, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { React, useLayoutEffect, useRef, useState } from 'react'
 import { BsSkipEnd, BsSkipStart, BsVolumeUpFill } from 'react-icons/bs'
 import { IoIosPause, IoMdRepeat, IoMdVolumeOff } from 'react-icons/io'
 import { IoCaretBackCircleOutline } from 'react-icons/io5'
 import { useDispatch, useSelector } from 'react-redux'
 import { mediaActions } from '../../components/Store/media-slice'
-import { db } from '../../firebase'
 import MediaWhiteLoading from '../Loading/MediaWhiteLoading'
 import SongCard from '../SongCard/SongCard'
 import Wave from '../Wave/Wave'
@@ -33,46 +31,23 @@ export default function MediaFooter() {
     const currentSongIndex = useSelector(
         (state) => state.media.currentSongIndex
     )
-    const prevMusics = useSelector((state) => state.media.preMusics)
-    const prevSongIndex = useSelector((state) => state.media.prevSongIndex)
-    console.log(prevMusics)
+    const prevMusics = useSelector((state) => state.media.prevMusics)
     const currentSong = currentPlaylist[currentSongIndex]
     const isPaused = useSelector((state) => state.media.isPaused)
     const dispatch = useDispatch()
-    const isReadyRender = useRef(false)
     const nextSong =
         currentPlaylist[
             currentSongIndex < currentPlaylist.length - 1
                 ? currentSongIndex + 1
                 : 0
         ]
-    const prevSong = currentPlaylist[prevSongIndex]
+    const prevSong = currentPlaylist[prevMusics[0]]
     const [isShowPrevSong, setIsshowPrevSong] = useState(false)
     const [isShowNextSong, setIsshowNextSong] = useState(false)
-    const collectionRef = collection(db, 'musics')
-    // useEffect(() => {
-    //     onSnapshot(
-    //         collectionRef,
-    //         (data) => {
-    //             isReadyRender.current = true
-    //             let index = -1
-    //             dispatch(
-    //                 mediaActions.setMusics(
-    //                     data.docs.map((doc) => {
-    //                         index++
-    //                         return { id: doc.id, index: index, ...doc.data() }
-    //                     })
-    //                 )
-    //             )
-    //         },
-    //         (err) => {
-    //             alert(err)
-    //         }
-    //     )
-    // }, [])
+
     useLayoutEffect(() => {
         //kiểm tra nếu musicCard clicked(nó tự dispath ispause=false) thi bật lại bài hát
-        if (!isReadyRender.current) return
+        if (!currentSong) return
         if (!isPaused) {
             audioRef.current.play()
         } else {
@@ -200,7 +175,7 @@ export default function MediaFooter() {
     }
     const handleOnPrevMouseEnter = () => {
         setIsshowPrevSong((prev) => {
-            return !prev && prevSongIndex !== null
+            return !prev
         })
     }
     const handleOnPrevMouseLeave = () => {
@@ -212,9 +187,9 @@ export default function MediaFooter() {
     const handleOnNextMouseLeave = () => {
         setIsshowNextSong(false)
     }
-    // if (!isReadyRender.current) {
-    //     return
-    // }
+    if (!prevSong) {
+        return <></>
+    }
     const thumpStyle = { width: `${audioSetting.currentProces}%` }
     const dotStyle = {
         left: `${audioSetting.currentProces}%`,
@@ -249,14 +224,14 @@ export default function MediaFooter() {
                             onClick={handlePrevOnClick}
                             className={clsx(styles.backBtn, styles.controlBtn)}
                         />
-                        {/* {isShowPrevSong && (
+                        {isShowPrevSong && (
                             <div className={styles.prevSong}>
                                 <SongCard
                                     song={prevSong}
                                     textStyle={sonCardTextStyle}
                                 />
                             </div>
-                        )} */}
+                        )}
                     </div>
                     {!isLoaded && <MediaWhiteLoading />}
                     {isLoaded && !isPaused && (
