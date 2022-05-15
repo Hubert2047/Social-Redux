@@ -50,7 +50,6 @@ html {
     fill: var(--grey-white-color);
     color: var(--grey-white-color);
 }
-
 .d-flex-c {
     display: flex;
     flex-direction: column;
@@ -58,11 +57,6 @@ html {
 
 .d-flex-r {
     display: flex;
-}
-
-.hr {
-    height: 1px;
-    background-color: var(--grey-color);
 }
 .input-valid-style {
     transition: all 0.1s ease;

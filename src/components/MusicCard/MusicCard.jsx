@@ -11,6 +11,7 @@ import Wave from '../Wave/Wave'
 import styles from './MusicCard.module.scss'
 
 export default function MusicCard({ order, song }) {
+    console.log(song)
     const dispatch = useDispatch()
     const currentPlaylist = useSelector((state) => state.media.currentPlaylist)
     const currentSongIndex = useSelector(

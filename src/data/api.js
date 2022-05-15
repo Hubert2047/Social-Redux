@@ -815,7 +815,7 @@ export const navBtns = [
         // icon: 'Media',
         icon: <BsMusicNoteList className='nav-icon' />,
         name: 'Media',
-        link: '/Media',
+        link: '/media',
     },
     {
         id: 5,

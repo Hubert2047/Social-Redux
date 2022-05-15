@@ -3,29 +3,30 @@ import { React, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { mediaActions } from '../../components/Store/media-slice'
 import { db } from '../../firebase'
-import MusicList from './../MusicList/MusicList'
+import AlbumCard from '../AlbumCard/AlbumCard'
 import styles from './MusicHome.module.scss'
 
 export default function MusicHome() {
-    const musicList = useSelector((state) => state.media.currentPlaylist)
+    const albums = useSelector((state) => state.media.albums)
     const collectionRef = collection(db, 'albums')
     const dispatch = useDispatch()
     useEffect(() => {
+        console.log('go effec')
         onSnapshot(
             collectionRef,
             (data) => {
                 console.log(
-                    data.docs.map((doc, index) => {
-                        return doc.data()
+                    data.docs.map((doc) => {
+                        return { id: doc.id, ...doc.data() }
                     })
                 )
-                // dispatch(
-                //     mediaActions.setMusics(
-                //         data.docs.map((doc, index) => {
-                //             return { id: doc.id, index: index, ...doc.data() }
-                //         })
-                //     )
-                // )
+                dispatch(
+                    mediaActions.setAlbums(
+                        data.docs.map((doc) => {
+                            return { id: doc.id, ...doc.data() }
+                        })
+                    )
+                )
             },
             (err) => {
                 alert(err)
@@ -42,8 +43,11 @@ export default function MusicHome() {
                     alt=''
                 />
             </div>
-            {/* <h2 className={styles.playlistTitle}>Top Musics</h2>
-            <MusicList musicList={musicList} /> */}
+            <ul className={styles.albums}>
+                {albums?.map((album) => {
+                    return <AlbumCard key={album.id} album={album} />
+                })}
+            </ul>
         </div>
     )
 }

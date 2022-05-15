@@ -23,5 +23,5 @@ ReactDOM.render(
             </Provider>
         </GlobalStyles>
     </React.StrictMode>,
-    document.getElementById('root')
+    rootElement
 )
