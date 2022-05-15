@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { FaBell } from 'react-icons/fa'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
@@ -24,6 +25,7 @@ export default function Header() {
     ).length
     const requestCount = user.requests.length
     const notificationCount = user.notifications.length
+    const icon = <BsFillPeopleFill className={styles.icon} />
     return (
         <div className={styles.header}>
             {/* logo */}
@@ -40,8 +42,9 @@ export default function Header() {
             </ul>
             {/* header icon */}
             <ul className={styles.icons}>
-                <li className={styles.iconBox} name='Request'>
-                    <BsFillPeopleFill className={styles.icon} />
+                <li className={styles.iconBox} id='1' name='Request'>
+                    {/* <BsFillPeopleFill className={styles.icon} /> */}
+                    {icon}
                     <span className={styles.iconText}>{requestCount}</span>
                 </li>
                 <li className={styles.iconBox} name='Messenger'>

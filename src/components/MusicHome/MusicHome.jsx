@@ -8,21 +8,24 @@ import styles from './MusicHome.module.scss'
 
 export default function MusicHome() {
     const musicList = useSelector((state) => state.media.currentPlaylist)
-    const collectionRef = collection(db, 'musics')
+    const collectionRef = collection(db, 'albums')
     const dispatch = useDispatch()
     useEffect(() => {
         onSnapshot(
             collectionRef,
             (data) => {
-                let index = -1
-                dispatch(
-                    mediaActions.setMusics(
-                        data.docs.map((doc) => {
-                            index++
-                            return { id: doc.id, index: index, ...doc.data() }
-                        })
-                    )
+                console.log(
+                    data.docs.map((doc, index) => {
+                        return doc.data()
+                    })
                 )
+                // dispatch(
+                //     mediaActions.setMusics(
+                //         data.docs.map((doc, index) => {
+                //             return { id: doc.id, index: index, ...doc.data() }
+                //         })
+                //     )
+                // )
             },
             (err) => {
                 alert(err)
@@ -39,8 +42,8 @@ export default function MusicHome() {
                     alt=''
                 />
             </div>
-            <h2 className={styles.playlistTitle}>Top Musics</h2>
-            <MusicList musicList={musicList} />
+            {/* <h2 className={styles.playlistTitle}>Top Musics</h2>
+            <MusicList musicList={musicList} /> */}
         </div>
     )
 }

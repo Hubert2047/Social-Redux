@@ -791,36 +791,42 @@ export const user = {
 export const navBtns = [
     {
         id: 1,
+        // icon: 'AiOutlineHome',
         icon: <AiOutlineHome className='nav-icon' />,
         name: 'Feeds',
         link: '/',
     },
     {
         id: 2,
+        // icon: 'CgProfile',
         icon: <CgProfile className='nav-icon' />,
         name: 'Profile',
         link: '/',
     },
     {
         id: 3,
+        // icon: 'Groups',
         icon: <IoIosPeople className='nav-icon' />,
         name: 'Groups',
         link: '/',
     },
     {
         id: 4,
+        // icon: 'Media',
         icon: <BsMusicNoteList className='nav-icon' />,
         name: 'Media',
         link: '/Media',
     },
     {
         id: 5,
+        // icon: 'MdOndemandVideo',
         icon: <MdOndemandVideo className='nav-icon' />,
         name: 'Videos',
         link: '/',
     },
     {
         id: 6,
+        // icon: 'SiHomeassistantcommunitystore',
         icon: <SiHomeassistantcommunitystore className='nav-icon' />,
         name: 'Marketplace',
         link: '/marketplace',
